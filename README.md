@@ -12,7 +12,6 @@ Glossary is what is says a glossary, saving words, their explanation and the sou
 
 ## Planned Features
 - Delete tables
-- Proper registration form
 - Search functionality
 
 
