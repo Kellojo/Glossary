@@ -1,9 +1,12 @@
 
 
 /* tries to login the user */
-function register(username, password) {
+function register(username, password, isAutoLogin) {
     $.post("/php/register.php", {username: username, password: password}, function(result){
         console.log(result);
+        if (isAutoLogin && result == "success") {
+            login (username, password);
+        }
     });
 }
 
@@ -19,10 +22,18 @@ function login(username, password) {
 
 /* graps the user input and sends it to the login function */
 function grabLogin() {
-    login(document.getElementById('form_username').value, document.getElementById('form_password').value);
-    document.getElementById('login').style.display="none";
-    document.getElementById('form_username').value = "";
-    document.getElementById('form_password').value = "";
+    login($('#form_username').val(), $('#form_password').val());
+    $('#login').hide();
+    $('#form_username').val("");
+    $('#form_password').val("");
+}
+
+/* grabs the user input and sends it to the register function and logs the user in after completion */
+function grabRegistration() {
+    var status = register($('#form_registration_username').val(), $('#form_registration_password').val(), true);
+    $('#register').hide();
+    $('#form_registration_username').val("");
+    $('#form_registration_password').val("");
 }
 
 /* tries to login the user */

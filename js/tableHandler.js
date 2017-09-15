@@ -10,7 +10,7 @@ function addTable(tablename) {
 function grabAddTable() {
     addTable(document.getElementById('form_tablename').value);
     document.getElementById('addTable').style.display="none";
-    document.getElementById('form_tablename').value = "";
+    $('#form_tablename').val("");
     refreshTabs();
 }
 
@@ -79,9 +79,9 @@ function grabInsertWord() {
 
     insertWord(word, description, source, tID);
 
-    $("#iw_word").value = "";
-    $("#iw_description").value = "";
-    $("#iw_source").value = "";
+    $("#iw_word").val("");
+    $("#iw_description").val("");
+    $("#iw_source").val("");
 
     /* Close form and refresh tables if possible */
     document.getElementById('insertWord').style.display='none';

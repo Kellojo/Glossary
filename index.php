@@ -24,16 +24,17 @@
 		<div class="mainBody">
 			<div class="menuContainer">
 				<nav>
-					<a id="nav_login" href="#" onclick="document.getElementById('login').style.display='block'"><i class="fa fa-sign-in fa-3x white menuIcon"></i></a>
+					<a id="nav_login" href="#" onclick="$('#login').show();"><i class="fa fa-sign-in fa-3x white menuIcon"></i></a>
+					<a id="nav_register" href="#" onclick="$('#register').show();"><i class="fa fa-user-plus fa-3x white menuIcon"></i></a>
 					<a id="nav_logout" href="#" onclick="logout();"><i class="fa fa-sign-out fa-3x white menuIcon"></i></a>
 					<a id="nav_table" href="#"><i class="fa fa-list fa-3x white menuIcon"></i></a>
-					<a id="nav_addEntry" href="#" onclick="document.getElementById('insertWord').style.display='block'"><i class="fa fa-plus fa-3x white menuIcon"></i></a>
+					<a id="nav_addEntry" href="#" onclick="$('#insertWord').show();"><i class="fa fa-plus fa-3x white menuIcon"></i></a>
 				</nav>
 			</div>
 
 			<div>
 				<div id="tabs_container" class="tab">
-				  	<button class="tablinks" onclick="document.getElementById('addTable').style.display='block'"><i class="fa fa-plus fa-lg black menuIcon"></i></button>
+				  	<button class="tablinks" onclick="$('#addTable').show();"><i class="fa fa-plus fa-lg black menuIcon"></i></button>
 				</div>
 
 				<div id="tableContainer" class="tabcontent">
@@ -57,7 +58,7 @@
 		  <form class="modal-content animate" method="post" action="#">
 		    <div class="imgcontainer">
 		    	<h1>Fachwort einfügen</h1>
-		      	<span onclick="document.getElementById('insertWord').style.display='none'" class="close" title="Close Modal">&times;</span>
+		      	<span onclick="$('#insertWord').hide();" class="close" title="Close Modal">&times;</span>
 		    </div>
 
 		    <div class="container">
@@ -78,7 +79,7 @@
 
 		    <div class="container" style="background-color:#f1f1f1">
 		      	<button type="button" onclick="grabInsertWord();" class="submitbtn"><i class="fa fa-paper-plane" aria-hidden="true"></i>  Einfügen</button>
-		      	<button type="button" onclick="document.getElementById('insertWord').style.display='none'" class="cancelbtn">Abbrechen</button>
+		      	<button type="button" onclick="$('#insertWord').hide();" class="cancelbtn">Abbrechen</button>
 		    </div>
 		  </form>
 		</div>
@@ -87,7 +88,7 @@
 		  <form class="modal-content animate" action="#">
 		    <div class="imgcontainer">
 		    	<h1>Tabelle einfügen</h1>
-		      	<span onclick="document.getElementById('addTable').style.display='none'" class="close" title="Close Modal">&times;</span>
+		      	<span onclick="$('#addTable').hide();" class="close" title="Close Modal">&times;</span>
 		    </div>
 
 		    <div class="container">
@@ -97,7 +98,7 @@
 
 		    <div class="container" style="background-color:#f1f1f1">
 		      	<button onclick="grabAddTable();" class="submitbtn"><i class="fa fa-lock" aria-hidden="true"></i>  Einfügen</button>
-		      	<button type="button" onclick="document.getElementById('addTable').style.display='none'" class="cancelbtn">Abbrechen</button>
+		      	<button type="button" onclick="$('#addTable').hide();" class="cancelbtn">Abbrechen</button>
 		    </div>
 		  </form>
 		</div>
@@ -106,7 +107,7 @@
 		  <form class="modal-content animate" action="#">
 		    <div class="imgcontainer">
 		    	<h1>Login</h1>
-		      	<span onclick="document.getElementById('login').style.display='none'" class="close" title="Close Modal">&times;</span>
+		      	<span onclick="$('#login').hide();" class="close" title="Close Modal">&times;</span>
 		    </div>
 
 		    <div class="container">
@@ -119,13 +120,57 @@
 
 		    <div class="container" style="background-color:#f1f1f1">
 		      	<button onclick="grabLogin();" class="submitbtn"><i class="fa fa-lock" aria-hidden="true"></i>  Login</button>
-		      	<button type="button" onclick="document.getElementById('login').style.display='none'" class="cancelbtn">Abbrechen</button>
+		      	<button type="button" onclick="$('#login').hide();" class="cancelbtn">Abbrechen</button>
+		    </div>
+		  </form>
+		</div>
+
+		<div id="login" class="modal">
+		  <form class="modal-content animate" action="#">
+		    <div class="imgcontainer">
+		    	<h1>Login</h1>
+		      	<span onclick="$('#login').hide();" class="close" title="Close Modal">&times;</span>
+		    </div>
+
+		    <div class="container">
+		      	<label><h4 class="noMargin">Benutzername</h4></label>
+		      	<input type="text" id="form_username" placeholder="Benutzernamen eingeben" name="username" required>
+
+		      	<label><h4 class="noMargin">Passwort</h4></label>
+		      	<input type="password" id="form_password" placeholder="Passwort eingeben" name="password" required>
+		    </div>
+
+		    <div class="container" style="background-color:#f1f1f1">
+		      	<button onclick="grabLogin();" class="submitbtn"><i class="fa fa-lock" aria-hidden="true"></i>  Login</button>
+		      	<button type="button" onclick="$('#login').hide();" class="cancelbtn">Abbrechen</button>
+		    </div>
+		  </form>
+		</div>
+
+		<div id="register" class="modal">
+		  <form class="modal-content animate" action="#">
+		    <div class="imgcontainer">
+		    	<h1>Registrierung</h1>
+		      	<span onclick="$('#register').hide();" class="close" title="Close Modal">&times;</span>
+		    </div>
+
+		    <div class="container">
+		      	<label><h4 class="noMargin">Gewünschter Benutzername</h4></label>
+		      	<input type="text" id="form_registration_username" placeholder="Gewünschten Benutzernamen eingeben" name="username" required>
+
+		      	<label><h4 class="noMargin">Gewünschtes Passwort</h4></label>
+		      	<input type="password" id="form_registration_password" placeholder="Gewünschtes Passwort eingeben" name="password" required>
+		    </div>
+
+		    <div class="container" style="background-color:#f1f1f1">
+		      	<button onclick="grabRegistration();" class="submitbtn"><i class="fa fa-user-plus" aria-hidden="true"></i>  Registrieren</button>
+		      	<button type="button" onclick="$('#register').hide();" class="cancelbtn">Abbrechen</button>
 		    </div>
 		  </form>
 		</div>
 
 	<ul class="contextMenu" hidden>
-	  	<li><a href="#" onclick="document.getElementById('insertWord').style.display='block'; $('ul.contextMenu').fadeOut('fast');"><i class="fa fa-plus"></i> Add</a></li>
+	  	<li><a href="#" onclick="$('#insertWord').show(); $('ul.contextMenu').fadeOut('fast');"><i class="fa fa-plus"></i> Add</a></li>
 	  	<li>
 	  		<a href="#" onclick=" $('ul.contextMenu').fadeOut('fast');">
 	  			<i class="fa fa-arrows"></i>

@@ -5,6 +5,7 @@ function setUpDisplay(state) {
     switch(state) {
 	    case "loggedIn":
 	       	$('#nav_login').hide();
+	       	$('#nav_register').hide();
 	    	$('#nav_logout').show();
 	    	$('#nav_table').show();
 	    	$('#nav_addEntry').show();
@@ -13,6 +14,7 @@ function setUpDisplay(state) {
 	        break;
 	    case "loggedOut":
 	    	$('#nav_login').show();
+	    	$('#nav_register').show();
 	    	$('#nav_logout').hide();
 	    	$('#nav_table').hide();
 	    	$('#nav_addEntry').hide();
