@@ -23,8 +23,3 @@ Glossary is what is says a glossary, saving words, their explanation and the sou
   - remove the "glossary.sql" file from the "Glossary" folder.
   - remove the "README.md" file from the "Glossary" folder.
   - As a best practice it is advised to not store your credentials in the "config.php" and save them in a config outside of the folder open to the web (there is a way to do this but I haven't looked into it yet).
-  
-  
-  ## How to register a user?
-  - Open the site and open the java-script developer console.
-  - Type "register("#Username","#Password");" and press enter. (replace #Password with your password, replace #Username with your username)
