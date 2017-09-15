@@ -1,0 +1,28 @@
+
+body {
+	margin : 0px;
+}
+
+.mainBody {
+	display: grid;
+	grid-template-columns: 94px calc(100% - 94px);
+}
+
+/* Farben */
+.white {
+	color: white;
+}
+
+.black {
+	color: black;
+}
+
+
+/* Generelle Schriftart */
+h1, h2, h3, h4, h5, th, tr, td, button, textarea {
+	font-family: proxima-nova,Helvetica,Arial,sans-serif;
+}
+
+.noMargin {
+	margin: 1px 1px 1px 1px;
+}

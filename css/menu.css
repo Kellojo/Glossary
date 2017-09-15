@@ -1,0 +1,28 @@
+
+nav {
+	text-align: center;
+	padding: 20px 0px 20px 0px;
+}
+
+nav a {
+	display: block
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.menuContainer {
+	background-color: #D7803B;
+	width: 84px;
+	height: 100%;
+	min-height: 100vh;
+	padding: 0px 5px 0px 5px;
+}
+
+.menuIcon {
+	transition: 0.6s;
+	text-shadow: 3px 6px rgba(0,0,0,0.2);
+}
+
+.menuIcon:hover {
+  transform: rotateZ(360deg);
+}
