@@ -6,8 +6,8 @@ Glossary is what is says a glossary, saving words, their explanation and the sou
 ## Features
 - Usersystem with login, logout, registration
 - Users can create their own set of tables
-- Words can be added
-- Words can be deleted
+- Words can be added to tables
+- Words can be deleted from tables
 - Words can be moved between tables
 
 ## Planned Features
