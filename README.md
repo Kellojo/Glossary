@@ -19,6 +19,8 @@ Glossary is what is says a glossary, saving words, their explanation and the sou
 - Create a database named "Glossary" on your MySQL server.
 - Update the credentials in the "Glossary"->"config.php" file.
 - Put the whole "Glossary" folder on a webserver that runs php.
+- It is advised to look up a recent guide on web server security for your web server.
+- It is advised to use SSL.
 - Additionaly:
   - remove the "glossary.sql" file from the "Glossary" folder.
   - remove the "README.md" file from the "Glossary" folder.
