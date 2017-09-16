@@ -24,8 +24,8 @@
 	$foundUsers = mysqli_fetch_array($result)[0];
 	if ($foundUsers < 1) { die("error"); };
 
-	/* Get password */
-	$stmt = $connection->prepare('select uID, password from users where username = ?');
+	/* Get password and salt */
+	$stmt = $connection->prepare('select uID, password, salt from users where username = ?');
 	$stmt->bind_param('s', $username);
 	$stmt->execute();
 	$result = $stmt->get_result();
@@ -37,11 +37,12 @@
 		};
 
 		$ret_id = $row['uID'];
+		$ret_salt = $row['salt'];
 		$ret_pass = $row['password'];
 	};
 	
 	/* Check login credentials */
-	$isCorrect = password_verify($password, $ret_pass);
+	$isCorrect = password_verify($password + $ret_salt, $ret_pass);
 	if ($isCorrect) {
 		$_SESSION["id"] = $ret_id;
 		echo "success";
