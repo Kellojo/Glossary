@@ -13,6 +13,7 @@ Glossary is what is says a glossary, saving words, their explanation and the sou
 ## Planned Features
 - Delete tables
 - Search functionality
+- Salting of password hashes
 
 
 ## How can this be setup?
