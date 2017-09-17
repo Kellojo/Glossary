@@ -13,7 +13,7 @@ function changeTable(tab ,tID) {
         $("#heading_tableName").text(tab.innerText);
         $("#table").empty();
         for (var i in table) {
-            var row = "<tr data-wID='" + table[i].wID + "'><td data-name='word' contenteditable='true'>" + table[i].word + "</td><td data-name='description' contenteditable='true'>" + table[i].description + "</td> <td data-name='source' contenteditable='true'>" + table[i].source + "</td></tr>";
+            var row = "<tr data-wID='" + table[i].wID + "'><td data-name='word' spellcheck='true' contenteditable='true'>" + table[i].word + "</td><td data-name='description' spellcheck='true' contenteditable='true'>" + table[i].description + "</td> <td data-name='source' spellcheck='true' contenteditable='true'>" + table[i].source + "</td></tr>";
             $("#table").append(row);
         }
 

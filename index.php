@@ -63,7 +63,7 @@
 
 		    <div class="container">
 		      	<label><h4 class="noMargin">Fachwort</h4></label>
-		      	<input type="text" id="iw_word" placeholder="Fachwort eingeben" name="word" required>
+		      	<input type="text" id="iw_word" placeholder="Fachwort eingeben" name="word" spellcheck="true" required>
 
 		      	<label><h4 class="noMargin">Zieltabelle</h4></label>
 		      	<select id="insertWord_tableSelectionContainer" name="tableID">
@@ -71,10 +71,10 @@
 				</select>
 
 		      	<label><h4 class="noMargin">Erklärung</h4></label>
-		      	<textarea type="text" id="iw_description" placeholder="Erläutere den Begriff" name="description"></textarea>
+		      	<textarea type="text" id="iw_description" placeholder="Erläutere den Begriff" spellcheck="true" name="description"></textarea>
 
 		      	<label><h4 class="noMargin">Quellen</h4></label>
-		      	<textarea type="text" id="iw_source" placeholder="Nenne die Quellen" name="source"></textarea>
+		      	<textarea type="text" id="iw_source" placeholder="Nenne die Quellen" spellcheck="true" name="source"></textarea>
 		    </div>
 
 		    <div class="container" style="background-color:#f1f1f1">
@@ -93,7 +93,7 @@
 
 		    <div class="container">
 		      	<label><h4 class="noMargin">Tabellenname</h4></label>
-		      	<input type="text" id="form_tablename" placeholder="Tabellennamen eingeben" required>
+		      	<input type="text" id="form_tablename" placeholder="Tabellennamen eingeben" spellcheck="true" required>
 		    </div>
 
 		    <div class="container" style="background-color:#f1f1f1">
