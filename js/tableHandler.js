@@ -24,6 +24,7 @@ function insertWord(word, description, source, tID) {
         source: source
     }, function(result) {
         console.log(result);
+        refreshTable();
     });
 }
 
@@ -85,9 +86,6 @@ function grabInsertWord() {
 
     /* Close form and refresh tables if possible */
     document.getElementById('insertWord').style.display='none';
-    if (activeTable != null) {
-        changeTable( activeTable.tab, activeTable.tID );
-    }
 }
 
 /* adds change listeners to all table cells */
@@ -109,4 +107,11 @@ function addChangeListeners() {
             updateWord(wID, word, description, source);
         }           
     });
+}
+
+/* Refreshes the active table */
+function refreshTable() {
+	if (activeTable != null) {
+        changeTable( activeTable.tab, activeTable.tID );
+    }
 }
