@@ -19,6 +19,8 @@ function setUpDisplay(state) {
 	    	$('#nav_table').hide();
 	    	$('#nav_addEntry').hide();
 	    	$('#tabs_container').hide();
+	    	$('#tableContainer').hide();
+	    	clearTable();
 	        break;
 	    default:
 	        

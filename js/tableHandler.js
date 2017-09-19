@@ -115,3 +115,8 @@ function refreshTable() {
         changeTable( activeTable.tab, activeTable.tID );
     }
 }
+
+/* clear table */
+function clearTable() {
+    $("#table").empty();
+}
