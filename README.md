@@ -25,3 +25,12 @@ Glossary is what is says a glossary, saving words, their explanation and the sou
   - remove the "glossary.sql" file from the "Glossary" folder.
   - remove the "README.md" file from the "Glossary" folder.
   - As a best practice it is advised to not store your credentials in the "config.php" and save them in a config outside of the folder open to the web (there is a way to do this but I haven't looked into it yet).
+
+## How does it look?
+
+![Login](https://i.imgur.com/7qjgBr8.png)
+![Registration](https://i.imgur.com/QrZjEEy.png)
+![Adding a word](https://i.imgur.com/Yu0zRlm.png)
+![Adding a table](https://i.imgur.com/dKbECNj.png)
+![Logged in user](https://i.imgur.com/ZdZkspQ.png)
+![Editing a Word](https://i.imgur.com/j3zJEZV.png)
