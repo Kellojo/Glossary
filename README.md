@@ -28,9 +28,20 @@ Glossary is what is says a glossary, saving words, their explanation and the sou
 
 ## How does it look?
 
-![Login](https://i.imgur.com/7qjgBr8.png)
-![Registration](https://i.imgur.com/QrZjEEy.png)
-![Adding a word](https://i.imgur.com/Yu0zRlm.png)
-![Adding a table](https://i.imgur.com/dKbECNj.png)
+### Logged in User
 ![Logged in user](https://i.imgur.com/ZdZkspQ.png)
+
+### Login
+![Login](https://i.imgur.com/7qjgBr8.png)
+
+### Registration
+![Registration](https://i.imgur.com/QrZjEEy.png)
+
+### Adding a Word
+![Adding a word](https://i.imgur.com/Yu0zRlm.png)
+
+### Adding a Table
+![Adding a table](https://i.imgur.com/dKbECNj.png)
+
+### Editing a Word
 ![Editing a Word](https://i.imgur.com/j3zJEZV.png)
