@@ -3,6 +3,7 @@
 function addTable(tablename) {
     $.post("/php/addTable.php", {tablename: tablename}, function(result){
         console.log(result);
+        refreshTabs();
     });
 }
 
@@ -11,7 +12,6 @@ function grabAddTable() {
     addTable(document.getElementById('form_tablename').value);
     document.getElementById('addTable').style.display="none";
     $('#form_tablename').val("");
-    refreshTabs();
 }
 
 /* inserts a word into the db */
