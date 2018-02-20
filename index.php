@@ -20,7 +20,7 @@
 		<script src="js/tableHandler.js"></script>
 	</head>
 	<body>
-	
+
 		<div class="mainBody">
 			<div class="menuContainer">
 				<nav>
@@ -38,7 +38,7 @@
 				</div>
 
 				<div id="tableContainer" class="tabcontent">
-				  	<h1 id="heading_tableName">[Titel]</h1>
+				  	<h1 id="heading_tableName"></h1>
 				  	<table>
 				  		<thead>
 				  			<tr>
@@ -67,7 +67,7 @@
 
 		      	<label><h4 class="noMargin">Zieltabelle</h4></label>
 		      	<select id="insertWord_tableSelectionContainer" name="tableID">
-				    
+
 				</select>
 
 		      	<label><h4 class="noMargin">Erklärung</h4></label>
@@ -198,3 +198,17 @@
 
 
 </html>
+
+
+<script>
+	<?php if (isset($_SESSION['currentTable']) && !empty($_SESSION['currentTable'])) {?>
+
+		$( document ).ready(function() {
+			var activeTable = <?php echo $_SESSION["currentTable"]; ?>;
+			changeTable($("#tabs_container").children()[0] ,activeTable);
+			console.log($("#tabs_container").children()[0]);
+		});
+	<?php } else {
+		echo "var activeTable = null;";
+	}?>
+</script>

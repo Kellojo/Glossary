@@ -1,5 +1,4 @@
 
-var activeTable = null;
 
 /* loads the selected table (tab) */
 function changeTable(tab ,tID) {
@@ -10,7 +9,7 @@ function changeTable(tab ,tID) {
 
         activeTable = {tab: tab, tID: tID};
 
-        $("#heading_tableName").text(tab.innerText);
+        setTableName($("#heading_tableName") ,tID);
         clearTable();
         for (var i in table) {
             var row = "<tr data-wID='" + table[i].wID + "'><td data-name='word' spellcheck='true' contenteditable='true'>" + table[i].word + "</td><td data-name='description' spellcheck='true' contenteditable='true'>" + table[i].description + "</td> <td data-name='source' spellcheck='true' contenteditable='true'>" + table[i].source + "</td></tr>";
@@ -33,4 +32,11 @@ function changeTable(tab ,tID) {
        addContextMenuListener();
        addChangeListeners();
     });
+}
+
+/* Queries the table name from the db and sets it to the given h1 tag as text */
+function setTableName(elem ,tID) {
+  $.post("/php/queryTableInfo.php", {tID: tID}, function(result) {
+    elem.text(result);
+  });
 }

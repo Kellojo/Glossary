@@ -4,7 +4,7 @@
 function register(username, password, isAutoLogin) {
     $.post("/php/register.php", {username: username, password: password}, function(result){
         console.log(result);
-        if (isAutoLogin && result == "success") {
+        if (isAutoLogin && result.includes("success")) {
             login (username, password);
         }
     });
@@ -14,7 +14,7 @@ function register(username, password, isAutoLogin) {
 function login(username, password) {
     $.post("/php/login.php", {username: username, password: password}, function(result){
         console.log(result);
-        if (result == "success") {
+        if (result.includes("success")) {
         	setUpDisplay("loggedIn");
         }
     });

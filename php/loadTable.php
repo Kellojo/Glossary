@@ -18,5 +18,7 @@
 
 	$connection->close();
 	echo json_encode($rows);
+	$_SESSION["currentTable"] = $_POST["tID"];
+
 	die();
 ?>
