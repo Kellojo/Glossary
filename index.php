@@ -24,17 +24,17 @@
 		<div class="mainBody">
 			<div class="menuContainer">
 				<nav>
-					<a id="nav_login" href="#" onclick="$('#login').show();"><i class="fa fa-sign-in fa-3x white menuIcon"></i></a>
-					<a id="nav_register" href="#" onclick="$('#register').show();"><i class="fa fa-user-plus fa-3x white menuIcon"></i></a>
+					<a id="nav_login" href="#" onclick="$('#login').show(); currentlyOpenedForm = 'login';"><i class="fa fa-sign-in fa-3x white menuIcon"></i></a>
+					<a id="nav_register" href="#" onclick="$('#register').show(); currentlyOpenedForm = 'register';"><i class="fa fa-user-plus fa-3x white menuIcon"></i></a>
 					<a id="nav_logout" href="#" onclick="logout();"><i class="fa fa-sign-out fa-3x white menuIcon"></i></a>
 					<a id="nav_table" href="#"><i class="fa fa-list fa-3x white menuIcon"></i></a>
-					<a id="nav_addEntry" href="#" onclick="$('#insertWord').show();"><i class="fa fa-plus fa-3x white menuIcon"></i></a>
+					<a id="nav_addEntry" href="#" onclick="$('#insertWord').show(); currentlyOpenedForm = 'addWord';"><i class="fa fa-plus fa-3x white menuIcon"></i></a>
 				</nav>
 			</div>
 
 			<div>
 				<div id="tabs_container" class="tab">
-				  	<button class="tablinks" onclick="$('#addTable').show();"><i class="fa fa-plus fa-lg black menuIcon"></i></button>
+				  	<button class="tablinks" onclick="$('#addTable').show(); currentlyOpenedForm = 'addTable';"><i class="fa fa-plus fa-lg black menuIcon"></i></button>
 				</div>
 
 				<div id="tableContainer" class="tabcontent">
