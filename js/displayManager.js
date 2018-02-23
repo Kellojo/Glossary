@@ -5,25 +5,23 @@ function setUpDisplay(state) {
     switch(state) {
 	    case "loggedIn":
 	       	$('#nav_login').hide();
-	       	$('#nav_register').hide();
-	    	$('#nav_logout').show();
-	    	$('#nav_table').show();
-	    	$('#nav_addEntry').show();
-	    	$('#tabs_container').show();
-	    	refreshTabs();
+          $('#nav_register').hide();
+          $('#nav_logout').show();
+          $('#nav_user').show();
+  	    	$('#nav_addEntry').show();
+  	    	$('#tabs_container').show();
+          refreshTabs();
 	        break;
-	    case "loggedOut":
+	    default:
 	    	$('#nav_login').show();
 	    	$('#nav_register').show();
 	    	$('#nav_logout').hide();
-	    	$('#nav_table').hide();
+	    	$('#nav_user').hide();
 	    	$('#nav_addEntry').hide();
 	    	$('#tabs_container').hide();
 	    	$('#tableContainer').hide();
 	    	clearTable();
 	        break;
-	    default:
-	        
 	}
 }
 

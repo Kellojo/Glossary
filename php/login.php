@@ -5,7 +5,7 @@
 		echo "error";
 		exit;
 	};
-	if ($_POST["username"] == "" || $_POST["password"] == "") {
+	if (empty($_POST["username"]) || empty($_POST["password"])) {
 		echo "error";
 		exit;
 	};
@@ -15,7 +15,7 @@
 
 	/* Connect to the db */
 	require($_SERVER['DOCUMENT_ROOT']."/php/dbConnector.php");
-	
+
 	/* Check if user exists */
 	$stmt = $connection->prepare('Select COUNT(*) FROM users where username=?');
 	$stmt->bind_param('s', $username);
@@ -40,7 +40,7 @@
 		$ret_salt = $row['salt'];
 		$ret_pass = $row['password'];
 	};
-	
+
 	/* Check login credentials */
 	$isCorrect = password_verify($password + $ret_salt, $ret_pass);
 	if ($isCorrect) {

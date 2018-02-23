@@ -10,16 +10,6 @@ window.onclick = function(event) {
     }
 }
 
-/* Handle key input (enter for submitting & escape for exiting something...) */
-$(document).keypress(function(e) {
-    //enter
-    if(e.which == 13) {
-      SubmitCurrentForm();
-    }
-
-    //escape
-});
-
 /* submits the currently opened form */
 function SubmitCurrentForm() {
   if (currentlyOpenedForm != null) {
@@ -38,8 +28,12 @@ function SubmitCurrentForm() {
         case "addWord":
             grabInsertWord();
             break;
+        /* Change password form */
+        case "user":
+            grabInsertWord();
+            break;
     }
 
-    
+
   }
 }

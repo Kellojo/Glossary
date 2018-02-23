@@ -26,3 +26,9 @@ h1, h2, h3, h4, h5, th, tr, td, button, textarea {
 .noMargin {
 	margin: 1px 1px 1px 1px;
 }
+
+
+/* Oft genutzes padding */
+.padding_top_10px {
+	padding: 0px 0px 10px 0px;
+}

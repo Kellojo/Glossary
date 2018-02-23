@@ -2,7 +2,11 @@
 /* adds a table for the given user */
 function addTable(tablename) {
     $.post("/php/addTable.php", {tablename: tablename}, function(result){
-        console.log(result);
+        if (result.includes("success")) {
+          showSuccessNotf("Tabelle hinzugefügt!");
+        } else {
+          showErrorNotf("Fehler beim Hinzufügen der Tabelle!");
+        }
         refreshTabs();
     });
 }
@@ -23,7 +27,11 @@ function insertWord(word, description, source, tID) {
         description: description,
         source: source
     }, function(result) {
-        console.log(result);
+        if (result.includes("success")) {
+          showSuccessNotf("Wort hinzugefügt!");
+        } else {
+          showErrorNotf("Fehler beim Hinzufügen des Wortes!");
+        }
         refreshTable();
     });
 }
@@ -36,7 +44,11 @@ function updateWord(wID, word, description, source) {
         description: description,
         source: source
     }, function(result) {
-        console.log(result);
+        if (result.includes("success")) {
+          showSuccessNotf("Inhalt geändert!");
+        } else {
+          showErrorNotf("Fehler beim Ändern des Inhaltes!");
+        }
     });
 }
 
@@ -45,7 +57,11 @@ function deleteWord(wID) {
     $.post("/php/deleteWord.php", {
         wID: wID
     }, function(result) {
-        console.log(result);
+        if (result.includes("success")) {
+          showSuccessNotf("Wort gelöscht!");
+        } else {
+          showErrorNotf("Fehler beim Löschen des Wortes!");
+        }
         changeTable(activeTable.tab ,activeTable.tID);
     });
 }
@@ -56,7 +72,11 @@ function moveWord(wID, tID) {
         wID: wID,
         tID: tID
     }, function(result) {
-        console.log(result);
+        if (result.includes("success")) {
+          showSuccessNotf("Wort verschoben!");
+        } else {
+          showErrorNotf("Fehler beim Verschieben des Wortes!");
+        }
         changeTable(activeTable.tab ,activeTable.tID);
     });
 }
@@ -105,7 +125,7 @@ function addChangeListeners() {
             var source = parent.find(`[data-name='source']`)[0].innerText;
 
             updateWord(wID, word, description, source);
-        }           
+        }
     });
 }
 

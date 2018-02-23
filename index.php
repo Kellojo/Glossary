@@ -5,6 +5,7 @@
 	<head>
 		<title>Glossary</title>
 		<link rel="stylesheet" href="css/basic.css">
+		<link rel="stylesheet" href="css/notifIt.css">
 		<link rel="stylesheet" href="css/menu.css">
 		<link rel="stylesheet" href="css/tabs.css">
 		<link rel="stylesheet" href="css/table.css">
@@ -12,23 +13,25 @@
 		<link rel="stylesheet" href="css/contextMenu.css">
 		<link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.css">
 		<script src="js/jquery-3.2.1.min.js"></script>
+		<script src="js/notifIt.min.js"></script>
 		<script src="js/tabs.js"></script>
 		<script src="js/form.js"></script>
 		<script src="js/contextMenu.js"></script>
 		<script src="js/userHandler.js"></script>
 		<script src="js/displayManager.js"></script>
 		<script src="js/tableHandler.js"></script>
+		<script src="js/standardizedNotifications.js"></script>
 	</head>
 	<body>
 
 		<div class="mainBody">
 			<div class="menuContainer">
 				<nav>
-					<a id="nav_login" href="#" onclick="$('#login').show(); currentlyOpenedForm = 'login';"><i class="fa fa-sign-in fa-3x white menuIcon"></i></a>
-					<a id="nav_register" href="#" onclick="$('#register').show(); currentlyOpenedForm = 'register';"><i class="fa fa-user-plus fa-3x white menuIcon"></i></a>
-					<a id="nav_logout" href="#" onclick="logout();"><i class="fa fa-sign-out fa-3x white menuIcon"></i></a>
-					<a id="nav_table" href="#"><i class="fa fa-list fa-3x white menuIcon"></i></a>
-					<a id="nav_addEntry" href="#" onclick="$('#insertWord').show(); currentlyOpenedForm = 'addWord';"><i class="fa fa-plus fa-3x white menuIcon"></i></a>
+					<a id="nav_login" href="#" onclick="$('#login').show(); currentlyOpenedForm = 'login';"><i class="fa fa-sign-in fa-3x white menuIcon padding_top_10px"></i></a>
+					<a id="nav_register" href="#" onclick="$('#register').show(); currentlyOpenedForm = 'register';"><i class="fa fa-user-plus fa-3x white menuIcon padding_top_10px"></i></a>
+					<a id="nav_logout" href="#" onclick="logout();"><i class="fa fa-sign-out fa-3x white menuIcon padding_top_10px"></i></a>
+					<a id="nav_user" href="#" onclick="$('#user').show(); currentlyOpenedForm = 'user';"><i class="fa fa-user-circle fa-3x white menuIcon padding_top_10px"></i></a>
+					<a id="nav_addEntry" href="#" onclick="$('#insertWord').show(); currentlyOpenedForm = 'addWord';"><i class="fa fa-plus fa-3x white menuIcon padding_top_10px"></i></a>
 				</nav>
 			</div>
 
@@ -97,7 +100,7 @@
 		    </div>
 
 		    <div class="container" style="background-color:#f1f1f1">
-		      	<button onclick="grabAddTable();" class="submitbtn"><i class="fa fa-lock" aria-hidden="true"></i>  Einfügen</button>
+		      	<button onclick="grabAddTable();" class="submitbtn"><i class="fa fa-send" aria-hidden="true"></i>  Einfügen</button>
 		      	<button type="button" onclick="$('#addTable').hide();" class="cancelbtn">Abbrechen</button>
 		    </div>
 		  </form>
@@ -169,6 +172,29 @@
 		  </form>
 		</div>
 
+		<div id="user" class="modal">
+		  <form class="modal-content animate" action="#">
+		    <div class="imgcontainer">
+		    	<h1>Kontoverwaltung</h1>
+		      	<span onclick="$('#user').hide();" class="close" title="Close Modal">&times;</span>
+		    </div>
+
+		    <div class="container">
+		      	<label><h4 class="noMargin">Aktuelles Passwort</h4></label>
+		      	<input type="text" id="form_user_currentPassword" placeholder="Aktuelles Passwort eingeben" name="password" required>
+
+		      	<label><h4 class="noMargin">Gewünschtes Passwort</h4></label>
+		      	<input type="password" id="form_user_newPassword" placeholder="Gewünschtes Passwort eingeben" name="newPassword" required>
+		    </div>
+
+		    <div class="container" style="background-color:#f1f1f1">
+		      	<button onclick="grabChangePassword();" class="submitbtn"><i class="fa fa-key" aria-hidden="true"></i>  Passwort ändern</button>
+		      	<button type="button" onclick="$('#user').hide();" class="cancelbtn">Abbrechen</button>
+		    </div>
+		  </form>
+		</div>
+
+
 	<ul class="contextMenu" hidden>
 	  	<li><a href="#" onclick="$('#insertWord').show(); $('ul.contextMenu').fadeOut('fast');"><i class="fa fa-plus"></i> Add</a></li>
 	  	<li>
@@ -206,7 +232,6 @@
 		$( document ).ready(function() {
 			var activeTable = <?php echo $_SESSION["currentTable"]; ?>;
 			changeTable($("#tabs_container").children()[0] ,activeTable);
-			console.log($("#tabs_container").children()[0]);
 		});
 	<?php } else {
 		echo "var activeTable = null;";
