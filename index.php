@@ -12,7 +12,9 @@
 		<link rel="stylesheet" href="css/form.css">
 		<link rel="stylesheet" href="css/contextMenu.css">
 		<link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.css">
+		<link rel="stylesheet" href="css/jquery-ui.min.css">
 		<script src="js/jquery-3.2.1.min.js"></script>
+		<script src="js/jquery-ui.min.js"></script>
 		<script src="js/notifIt.min.js"></script>
 		<script src="js/tabs.js"></script>
 		<script src="js/form.js"></script>
@@ -21,6 +23,7 @@
 		<script src="js/displayManager.js"></script>
 		<script src="js/tableHandler.js"></script>
 		<script src="js/standardizedNotifications.js"></script>
+		<script src="js/init.js"></script>
 	</head>
 	<body>
 

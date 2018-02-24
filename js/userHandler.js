@@ -6,6 +6,8 @@ function register(username, password, isAutoLogin) {
         console.log(result);
         if (isAutoLogin && result.includes("success")) {
             login (username, password);
+        } else if (result.includes("userAlready")) {
+          showErrorNotf("Benutzername wird bereits verwendet!");
         }
     });
 }
@@ -69,17 +71,16 @@ function logout() {
     });
 }
 
+/* Handles hotkeys */
+function handleKeyInput(input) {
+  //enter
+  if(input.which == 13) {
+    SubmitCurrentForm();
+  }
 
-/* Handle key input (enter for submitting & escape for exiting something...) */
-$(document).keypress(function(e) {
-    //enter
-    if(e.which == 13) {
-      SubmitCurrentForm();
-    }
-
-    //add a word
-    if(e.which == 43) {
-      $('#insertWord').show();
-      currentlyOpenedForm = 'addWord';
-    }
-});
+  //add a word
+  if(input.which == 43) {
+    $('#insertWord').show();
+    currentlyOpenedForm = 'addWord';
+  }
+}

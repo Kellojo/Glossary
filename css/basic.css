@@ -17,6 +17,10 @@ body {
 	color: black;
 }
 
+.redBackground {
+  background-color: #ff915e
+}
+
 
 /* Generelle Schriftart */
 h1, h2, h3, h4, h5, th, tr, td, button, textarea {

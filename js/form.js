@@ -37,3 +37,14 @@ function SubmitCurrentForm() {
 
   }
 }
+
+/* Checks weather the currently entered word in the insert word modal is already in the db and colorizes the input field red if thats true */
+function checkForDuplicateWord() {
+  $.get("php/queryExistingWordsForDuplicates.php", { term: $("#iw_word").val() }, function(returns) {
+      if (JSON.parse(returns)) {
+        $("#iw_word").addClass("redBackground");
+      } else {
+        $("#iw_word").removeClass("redBackground");
+      }
+  });
+}

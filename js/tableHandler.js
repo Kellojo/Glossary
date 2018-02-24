@@ -129,6 +129,15 @@ function addChangeListeners() {
     });
 }
 
+/* applies the auto completion handlers to the current table */
+function applyAutoCompletion() {
+    //autocomplete
+    $(".autocompleteSources").autocomplete({
+        source: "/php/autoCompleteQuery.php",
+        minLength: 1
+    });
+};
+
 /* Refreshes the active table */
 function refreshTable() {
 	if (activeTable != null) {

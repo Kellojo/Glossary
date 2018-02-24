@@ -8,8 +8,6 @@ input[type=text], input[type=password], textarea[type=text], select {
     box-sizing: border-box;
 }
 
-
-
 /* Set a style for all buttons */
 .formButton {
     background-color: #4CAF50;
@@ -130,12 +128,12 @@ span.psw {
 }
 
 @-webkit-keyframes animatezoom {
-    from {-webkit-transform: scale(0)} 
+    from {-webkit-transform: scale(0)}
     to {-webkit-transform: scale(1)}
 }
-    
+
 @keyframes animatezoom {
-    from {transform: scale(0)} 
+    from {transform: scale(0)}
     to {transform: scale(1)}
 }
 

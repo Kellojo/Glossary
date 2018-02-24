@@ -25,18 +25,6 @@ function setUpDisplay(state) {
 	}
 }
 
-/* Sets up the initial state of the website */
-$( document ).ready(function() {
-   $.post("/php/checkSession.php", {}, function(result){
-        console.log(result);
-        if (result == "valid") {
-        	setUpDisplay("loggedIn");
-        } else {
-        	setUpDisplay("loggedOut");
-        }
-    });
-});
-
 /* Refreshes the tabs */
 function refreshTabs() {
     $.post("/php/getTables.php", {}, function(result){

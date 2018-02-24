@@ -12,7 +12,7 @@ function changeTable(tab ,tID) {
         setTableName($("#heading_tableName") ,tID);
         clearTable();
         for (var i in table) {
-            var row = "<tr data-wID='" + table[i].wID + "'><td data-name='word' spellcheck='true' contenteditable='true'>" + table[i].word + "</td><td data-name='description' spellcheck='true' contenteditable='true'>" + table[i].description + "</td> <td data-name='source' spellcheck='true' contenteditable='true'>" + table[i].source + "</td></tr>";
+            var row = "<tr data-wID='" + table[i].wID + "'><td data-name='word' spellcheck='true' contenteditable='true'>" + table[i].word + "</td><td data-name='description' spellcheck='true' contenteditable='true'>" + table[i].description + "</td> <td data-name='source' spellcheck='true' contenteditable='true' class='autocompleteSources'>" + table[i].source + "</td></tr>";
             $("#table").append(row);
         }
 
@@ -31,6 +31,7 @@ function changeTable(tab ,tID) {
 
        addContextMenuListener();
        addChangeListeners();
+       applyAutoCompletion();
     });
 }
 
