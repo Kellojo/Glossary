@@ -10,7 +10,7 @@
 	$sources = array();
   $searchTerm = "%".$_GET["term"]."%";
 
-	$stmt = $connection->prepare('Select sources.sID, sources.source From sources Join Words on words.sID = sources.sID Join tables on tables.tID = words.tID Where tables.oID = ? && sources.source Like ?;');
+	$stmt = $connection->prepare('Select sources.sID, sources.source From sources Join words on words.sID = sources.sID Join tables on tables.tID = words.tID Where tables.oID = ? && sources.source Like ?;');
 	$stmt->bind_param('ss', $_SESSION["id"], $searchTerm);
 	$stmt->execute();
 	$result = $stmt->get_result();
