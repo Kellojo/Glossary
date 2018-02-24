@@ -80,7 +80,7 @@
 		      	<textarea type="text" id="iw_description" placeholder="Erläutere den Begriff" spellcheck="true" name="description"></textarea>
 
 		      	<label><h4 class="noMargin">Quellen</h4></label>
-		      	<textarea type="text" id="iw_source" placeholder="Nenne die Quellen" spellcheck="true" name="source"></textarea>
+		      	<textarea type="text" id="iw_source" class="autocompleteSources" placeholder="Nenne die Quellen" spellcheck="true" name="source"></textarea>
 		    </div>
 
 		    <div class="container" style="background-color:#f1f1f1">
