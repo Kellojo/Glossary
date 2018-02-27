@@ -4,6 +4,13 @@
 <html>
 	<head>
 		<title>Glossary</title>
+		<meta charset="UTF-8">
+		<meta name="description" content="Glossary is what is says a glossary, saving words, their explanation and the source of that explanation in tables using a MySQL Database and a webserver capable of running php. Link to the GitHub repo: https://github.com/Kellojo/Glossary">
+		<meta name="keywords" content="Glossary">
+		<meta name="author" content="Kellojo (https://github.com/Kellojo)">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
 		<link rel="stylesheet" href="css/basic.css">
 		<link rel="stylesheet" href="css/notifIt.css">
 		<link rel="stylesheet" href="css/menu.css">
