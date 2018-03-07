@@ -8,6 +8,15 @@ input[type=text], input[type=password], textarea[type=text], select {
     box-sizing: border-box;
 }
 
+/* Form validation styles */
+input:invalid {
+  border-bottom: 2px solid red;
+}
+input:valid {
+  border-bottom: 2px solid yellowgreen;
+}
+
+
 /* Set a style for all buttons */
 .formButton {
     background-color: #4CAF50;
@@ -18,7 +27,6 @@ input[type=text], input[type=password], textarea[type=text], select {
     cursor: pointer;
     width: 100%;
 }
-
 .formButton:hover {
     opacity: 0.8;
 }
@@ -37,7 +45,6 @@ input[type=text], input[type=password], textarea[type=text], select {
     cursor: pointer;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.2);
 }
-
 .submitbtn {
     background-color: yellowgreen;
     border: none;
@@ -51,7 +58,6 @@ input[type=text], input[type=password], textarea[type=text], select {
     cursor: pointer;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.2);
 }
-
 .submitbtn:hover, .cancelbtn:hover {
     opacity: 0.8;
 }
@@ -67,16 +73,13 @@ textarea {
     margin: 24px 0 12px 0;
     position: relative;
 }
-
 img.avatar {
     width: 40%;
     border-radius: 50%;
 }
-
 .container {
     padding: 16px;
 }
-
 span.psw {
     float: right;
     padding-top: 16px;
@@ -114,7 +117,6 @@ span.psw {
     font-size: 35px;
     font-weight: bold;
 }
-
 .close:hover,
 .close:focus {
     color: red;

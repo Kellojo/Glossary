@@ -1,4 +1,4 @@
-// Get the modal
+/* Get the modal
 var modal = document.getElementById('insertWord');
 
 var currentlyOpenedForm = null;
@@ -9,6 +9,7 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+*/
 
 /* submits the currently opened form */
 function SubmitCurrentForm() {
@@ -33,8 +34,6 @@ function SubmitCurrentForm() {
             grabInsertWord();
             break;
     }
-
-
   }
 }
 

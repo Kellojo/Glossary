@@ -4,6 +4,8 @@ function addTable(tablename) {
     $.post("/php/addTable.php", {tablename: tablename}, function(result){
         if (result.includes("success")) {
           showSuccessNotf("Tabelle hinzugefügt!");
+        } else if (result.includes("errorEmptyInput_TableName")) {
+          showErrorNotf("Der Tabellenname darf nicht leer sein.");
         } else {
           showErrorNotf("Fehler beim Hinzufügen der Tabelle!");
         }
@@ -13,6 +15,14 @@ function addTable(tablename) {
 
 /* grabs the data to add a table from the form */
 function grabAddTable() {
+  var tablename = $("#form_tablename").val().trim();
+
+  /* Abort the insertion process if the word input is empty */
+  if (tablename == "") {
+    showErrorNotf("Das Eingabefeld 'Tabellenname' darf nicht leer sein.");
+    return;
+  }
+
     addTable(document.getElementById('form_tablename').value);
     document.getElementById('addTable').style.display="none";
     $('#form_tablename').val("");
@@ -98,6 +108,13 @@ function grabInsertWord() {
     var e = document.getElementById("insertWord_tableSelectionContainer");
     var tID = e.options[e.selectedIndex].value;
 
+    /* Abort the insertion process if the word input is empty */
+    if (word.trim() == "") {
+      showErrorNotf("Das Eingabefeld 'Fachwort' darf nicht leer sein.");
+      return;
+    }
+
+    /* Continue insertion process */
     insertWord(word, description, source, tID);
 
     $("#iw_word").val("");

@@ -12,17 +12,21 @@
 
 
 		<link rel="stylesheet" href="css/basic.css">
-		<link rel="stylesheet" href="css/notifIt.css">
 		<link rel="stylesheet" href="css/menu.css">
 		<link rel="stylesheet" href="css/tabs.css">
 		<link rel="stylesheet" href="css/table.css">
 		<link rel="stylesheet" href="css/form.css">
-		<link rel="stylesheet" href="css/contextMenu.css">
-		<link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.css">
-		<link rel="stylesheet" href="css/jquery-ui.min.css">
-		<script src="js/jquery-3.2.1.min.js"></script>
-		<script src="js/jquery-ui.min.js"></script>
-		<script src="js/notifIt.min.js"></script>
+
+		<link rel="stylesheet" href="css/thirdparty/contextMenu.css">
+		<link rel="stylesheet" href="css/thirdparty/notifIt.css">
+		<link rel="stylesheet" href="css/thirdparty/font-awesome-4.7.0/css/font-awesome.css">
+		<link rel="stylesheet" href="css/thirdparty/jquery-ui.min.css">
+
+
+		<script src="js/thirdparty/jquery-3.2.1.min.js"></script>
+		<script src="js/thirdparty/jquery-ui.min.js"></script>
+		<script src="js/thirdparty/notifIt.min.js"></script>
+
 		<script src="js/tabs.js"></script>
 		<script src="js/form.js"></script>
 		<script src="js/contextMenu.js"></script>
@@ -222,12 +226,7 @@
   			</ul>
 	  	</li>
 	  	<li><a href="#" onclick="deleteWord($(selectedElement).parent().attr('data-wid')); $('ul.contextMenu').fadeOut('fast');"><i class="fa fa-trash"></i> Delete</a></li>
-	  	<li>
-	      	<a class="fa fa-facebook" href="#"></a>
-	      	<a class="fa fa-twitter" href="#"></a>
-	      	<a class="fa fa-google-plus" href="#"></a>
-	      	<a class="fa fa-linkedin" href="#"></a>
-	  	</li>
+	  	<li></li>
 	</ul>
 
 	</body>
