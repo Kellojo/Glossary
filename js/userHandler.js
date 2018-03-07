@@ -38,18 +38,40 @@ function changePassword(newPassword, currentPassword) {
 
 /* graps the user input and sends it to the login function */
 function grabLogin() {
-    login($('#form_username').val(), $('#form_password').val());
-    $('#login').hide();
-    $('#form_username').val("");
-    $('#form_password').val("");
+
+  var username = $("#form_username").val().trim();
+  var password = $("#form_password").val().trim();
+
+  /* Abort the login process if the password and or username input fields are empty */
+  if (username == "" || password == "") {
+    showErrorNotf("Bitte gib einen Benutzernamen und ein Passwort ein.");
+    return;
+  }
+
+  /* login */
+  login(username, password);
+  $('#login').hide();
+  $('#form_username').val("");
+  $('#form_password').val("");
 }
 
 /* grabs the user input and sends it to the register function and logs the user in after completion */
 function grabRegistration() {
-    var status = register($('#form_registration_username').val(), $('#form_registration_password').val(), true);
-    $('#register').hide();
-    $('#form_registration_username').val("");
-    $('#form_registration_password').val("");
+
+  var username = $("#form_registration_username").val().trim();
+  var password = $("#form_registration_password").val().trim();
+
+  /* Abort the login process if the password and or username input fields are empty */
+  if (username == "" || password == "") {
+    showErrorNotf("Bitte gib einen Benutzernamen und ein Passwort ein.");
+    return;
+  }
+
+  /* register the new user */
+  var status = register(username, password, true);
+  $('#register').hide();
+  $('#form_registration_username').val("");
+  $('#form_registration_password').val("");
 }
 
 /* grabs the user input and sends it to the changePassword function to change the password */
