@@ -6,7 +6,7 @@ $( document ).ready(function() {
   $( document ).ready(function() {
      $.post("/php/checkSession.php", {}, function(result){
           console.log(result);
-          if (result == "valid") {
+          if (result == "validSession") {
           	setUpDisplay("loggedIn");
           } else {
           	setUpDisplay("loggedOut");

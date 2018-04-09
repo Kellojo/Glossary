@@ -30,6 +30,8 @@ function changePassword(newPassword, currentPassword) {
     $.post("/php/changePassword.php", {password: currentPassword, newPassword: newPassword}, function(result){
         if (result.includes("success")) {
           showSuccessNotf("Password wurde geändert!");
+        } else if (result.includes("invalidSession")) {
+          showErrorNotf("Bitte loggen sie sich erneut ein.");
         } else {
           showErrorNotf("Fehler beim Ändern des Passworts!");
         }

@@ -1,5 +1,6 @@
 <?php
 	@session_start();
+	include "utility/checkSession.php";
 	if (!isset($_SESSION["id"]) || !isset($_POST["wID"]) || !isset($_POST["tID"])) { die("error"); };
 	if ($_SESSION["id"] == "" || $_POST["wID"] == "" || $_POST["tID"] == "") { die("error"); };
 

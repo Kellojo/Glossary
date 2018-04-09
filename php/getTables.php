@@ -1,6 +1,6 @@
 <?php
 	@session_start();
-	if (!isset($_SESSION["id"])) { die("error"); };
+	include "utility/checkSession.php";
 
 	/* Connect to the db */
 	require($_SERVER['DOCUMENT_ROOT']."/php/dbConnector.php");

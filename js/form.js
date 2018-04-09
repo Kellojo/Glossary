@@ -1,16 +1,3 @@
-/* Get the modal
-var modal = document.getElementById('insertWord');
-
-var currentlyOpenedForm = null;
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-*/
-
 /* submits the currently opened form */
 function SubmitCurrentForm() {
   if (currentlyOpenedForm != null) {

@@ -6,6 +6,8 @@ function addTable(tablename) {
           showSuccessNotf("Tabelle hinzugefügt!");
         } else if (result.includes("errorEmptyInput_TableName")) {
           showErrorNotf("Der Tabellenname darf nicht leer sein.");
+        } else if (result.includes("invalidSession")) {
+        	showErrorNotf("Bitte loggen sie sich erneut ein.");
         } else {
           showErrorNotf("Fehler beim Hinzufügen der Tabelle!");
         }
@@ -39,6 +41,8 @@ function insertWord(word, description, source, tID) {
     }, function(result) {
         if (result.includes("success")) {
           showSuccessNotf("Wort hinzugefügt!");
+        } else if (result.includes("invalidSession")) {
+        	showErrorNotf("Bitte loggen sie sich erneut ein.");
         } else {
           showErrorNotf("Fehler beim Hinzufügen des Wortes!");
         }
@@ -56,6 +60,8 @@ function updateWord(wID, word, description, source) {
     }, function(result) {
         if (result.includes("success")) {
           showSuccessNotf("Inhalt geändert!");
+        } else if (result.includes("invalidSession")) {
+        	showErrorNotf("Bitte loggen sie sich erneut ein.");
         } else {
           showErrorNotf("Fehler beim Ändern des Inhaltes!");
         }
@@ -69,6 +75,8 @@ function deleteWord(wID) {
     }, function(result) {
         if (result.includes("success")) {
           showSuccessNotf("Wort gelöscht!");
+        } else if (result.includes("invalidSession")) {
+        	showErrorNotf("Bitte loggen sie sich erneut ein.");
         } else {
           showErrorNotf("Fehler beim Löschen des Wortes!");
         }
@@ -84,6 +92,8 @@ function moveWord(wID, tID) {
     }, function(result) {
         if (result.includes("success")) {
           showSuccessNotf("Wort verschoben!");
+        } else if (result.includes("invalidSession")) {
+        	showErrorNotf("Bitte loggen sie sich erneut ein.");
         } else {
           showErrorNotf("Fehler beim Verschieben des Wortes!");
         }

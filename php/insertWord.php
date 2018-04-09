@@ -1,5 +1,6 @@
 <?php
 	@session_start();
+	include "utility/checkSession.php";
 	if (!isset($_SESSION["id"]) || !isset($_POST["tID"]) || !isset($_POST["word"]) || !isset($_POST["description"]) || !isset($_POST["source"])) { die("error - first"); };
 	if ($_SESSION["id"] == "" || $_POST["tID"] == "" || $_POST["word"] == "") { die("error"); };
 

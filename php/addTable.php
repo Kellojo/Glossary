@@ -1,5 +1,8 @@
 <?php
 	@session_start();
+
+	include "utility/checkSession.php";
+
 	if (!isset($_POST["tablename"]) || !isset($_SESSION["id"])) { die("error");};
 	$tablename = trim($_POST["tablename"]);
 	if ($tablename == "") { die("errorEmptyInput_TableName"); };

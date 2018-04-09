@@ -1,5 +1,6 @@
 <?php
 	@session_start();
+	include "utility/checkSession.php";
 	if (!isset($_SESSION["id"]) || !isset($_POST["tID"])) { die("error"); };
 
 	/* Connect to the db */
