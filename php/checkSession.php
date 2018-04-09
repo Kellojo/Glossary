@@ -1,8 +1,8 @@
 <?php
 	@session_start();
 	if (isset($_SESSION["id"])) {
-		die("valid");
+		die("validSession");
 	} else {
-		die("invalid");
+		die("invalidSession");
 	}
 ?>
