@@ -41,11 +41,11 @@
 		<div class="mainBody">
 			<div class="menuContainer">
 				<nav>
-					<a id="nav_login" href="#" onclick="$('#login').show(); currentlyOpenedForm = 'login';"><i class="fa fa-sign-in fa-3x white menuIcon padding_top_10px"></i></a>
-					<a id="nav_register" href="#" onclick="$('#register').show(); currentlyOpenedForm = 'register';"><i class="fa fa-user-plus fa-3x white menuIcon padding_top_10px"></i></a>
-					<a id="nav_logout" href="#" onclick="logout();"><i class="fa fa-sign-out fa-3x white menuIcon padding_top_10px"></i></a>
-					<a id="nav_user" href="#" onclick="$('#user').show(); currentlyOpenedForm = 'user';"><i class="fa fa-user-circle fa-3x white menuIcon padding_top_10px"></i></a>
-					<a id="nav_addEntry" href="#" onclick="$('#insertWord').show(); currentlyOpenedForm = 'addWord';"><i class="fa fa-plus fa-3x white menuIcon padding_top_10px"></i></a>
+					<a id="nav_login" href="#" style="display: none;" onclick="$('#login').show(); currentlyOpenedForm = 'login';"><i class="fa fa-sign-in fa-3x white menuIcon padding_top_10px"></i></a>
+					<a id="nav_register" href="#" style="display: none;" onclick="$('#register').show(); currentlyOpenedForm = 'register';"><i class="fa fa-user-plus fa-3x white menuIcon padding_top_10px"></i></a>
+					<a id="nav_logout" href="#" style="display: none;" onclick="logout();"><i class="fa fa-sign-out fa-3x white menuIcon padding_top_10px"></i></a>
+					<a id="nav_user" href="#" style="display: none;" onclick="$('#user').show(); currentlyOpenedForm = 'user';"><i class="fa fa-user-circle fa-3x white menuIcon padding_top_10px"></i></a>
+					<a id="nav_addEntry" href="#" style="display: none;" onclick="$('#insertWord').show(); currentlyOpenedForm = 'addWord';"><i class="fa fa-plus fa-3x white menuIcon padding_top_10px"></i></a>
 				</nav>
 			</div>
 
