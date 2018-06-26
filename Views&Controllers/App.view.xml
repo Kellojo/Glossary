@@ -1,0 +1,45 @@
+<mvc:View
+  controllerName="Glossary.App"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m">
+
+  <IconTabBar
+  id="idIconTabBar"
+  select="handleIconTabBarSelect"
+  class="sapUiResponsiveContentPadding">
+  <items>
+      <IconTabFilter
+          icon="sap-icon://home"
+          iconColor="Positive"
+          text="HOME"
+          expandable="true"
+          key="All" />
+      <IconTabSeparator />
+      <IconTabFilter
+          icon="sap-icon://legend"
+          iconColor="Critical"
+          expandable="true"
+          count="{/ProductCollectionStats/Counts/Weight/Ok}"
+          text="TABLES"/>
+      <IconTabFilter
+          icon="sap-icon://user-settings"
+          iconColor="Critical"
+          expandable="true"
+          count="{/ProductCollectionStats/Counts/Weight/Heavy}"
+          text="USER"/>
+  </items>
+
+  <content>
+      <Page id="Home">
+
+      </Page>
+      <Page id="Tables">
+
+      </Page>
+      <Page id="User">
+          
+      </Page>
+  </content>
+  </IconTabBar>
+
+</mvc:View>

@@ -7,13 +7,18 @@
 		src="/resources/sap-ui-core.js"
 		data-sap-ui-theme="sap_belize"
 		data-sap-ui-libs="sap.m"
-		data-sap-ui-resourceroots='{"HelloWorld": "./"}'
+		data-sap-ui-resourceroots='{"Glossary": "./Views&Controllers/"}'
 		displayBlock="true">
 	</script>
+
+
+	<script src="js/GlossaryAPI.js"></script>
+
+
 	<script>
 		sap.ui.getCore().attachInit(function () {
 			sap.ui.xmlview({
-			  viewName: "HelloWorld.App"
+			  viewName: "Glossary.App"
 			}).placeAt("content");
 		});
 	</script>
