@@ -1,0 +1,6 @@
+/*!
+ * UI development toolkit for HTML5 (OpenUI5)
+ * (c) Copyright 2009-2018 SAP SE or an SAP affiliate company.
+ * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
+ */
+sap.ui.define(['./ListItemBase','./library','sap/ui/core/library','./DisplayListItemRenderer'],function(L,l,c,D){"use strict";var T=c.TextDirection;var a=L.extend("sap.m.DisplayListItem",{metadata:{library:"sap.m",properties:{label:{type:"string",group:"Misc",defaultValue:null},value:{type:"string",group:"Data",defaultValue:null},valueTextDirection:{type:"sap.ui.core.TextDirection",group:"Appearance",defaultValue:T.Inherit}}}});a.prototype.getContentAnnouncement=function(){return this.getLabel()+" "+this.getValue();};return a;});

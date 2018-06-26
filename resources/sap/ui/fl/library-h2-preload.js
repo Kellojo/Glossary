@@ -1,0 +1,6 @@
+/*!
+ * UI development toolkit for HTML5 (OpenUI5)
+ * (c) Copyright 2009-2018 SAP SE or an SAP affiliate company.
+ * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
+ */
+sap.ui.predefine('sap/ui/fl/library',["sap/ui/fl/RegistrationDelegator"],function(R){"use strict";sap.ui.getCore().initLibrary({name:"sap.ui.fl",version:"1.54.6",controls:["sap.ui.fl.variants.VariantManagement"],dependencies:["sap.ui.core","sap.m"],designtime:"sap/ui/fl/designtime/library.designtime",extensions:{"sap.ui.support":{diagnosticPlugins:["sap/ui/fl/support/Flexibility"],publicRules:true}}});R.registerAll();return sap.ui.fl;});jQuery.sap.registerPreloadedModules({"name":"sap/ui/fl/library-h2-preload","version":"2.0","modules":{"sap/ui/fl/manifest.json":'{"_version":"1.9.0","sap.app":{"id":"sap.ui.fl","type":"library","embeds":["support/apps/contentbrowser"],"applicationVersion":{"version":"1.54.6"},"title":"SAPUI5 library with sap.ui.fl controls.","description":"SAPUI5 library with sap.ui.fl controls.","ach":"CA-UI5-FL","resources":"resources.json","offline":true},"sap.ui":{"technology":"UI5","supportedThemes":["base"]},"sap.ui5":{"dependencies":{"minUI5Version":"1.54","libs":{"sap.ui.core":{"minVersion":"1.54.6"},"sap.m":{"minVersion":"1.54.6"}}},"library":{"i18n":"messagebundle.properties","content":{"controls":["sap.ui.fl.variants.VariantManagement"]}}}}'}});

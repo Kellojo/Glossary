@@ -1,0 +1,6 @@
+/*!
+ * UI development toolkit for HTML5 (OpenUI5)
+ * (c) Copyright 2009-2018 SAP SE or an SAP affiliate company.
+ * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
+ */
+sap.ui.define(["sap/base/assert"],function(a){"use strict";function c(s){var o={};if(s){for(var k in s){if(s.hasOwnProperty(k)){o[k]=s[k];}}}return o;}function _(u,A,l,e){var s=document.createElement("SCRIPT");s.src=u;s.type="text/javascript";if(A&&typeof A==="object"){for(var k in A){if(A[k]!=null){s.setAttribute(k,A[k]);}}}function o(){if(typeof l==="function"){l();}s.removeEventListener('load',o);s.removeEventListener('error',b);}function b(){if(typeof e==="function"){e();}s.removeEventListener('load',o);s.removeEventListener('error',b);}if(typeof l==="function"||typeof e==="function"){s.addEventListener('load',o);s.addEventListener('error',b);}var i=A&&A.id,O=i&&document.getElementById(i);if(O&&O.tagName==="SCRIPT"){O.parentNode.removeChild(O);}document.head.appendChild(s);}return function includeScript(u,i,l,e){var A;if(typeof u==="string"){A=typeof i==="string"?{id:i}:i;_(u,A,l,e);}else{a(typeof u==='object'&&u.url,"vUrl must be an object and requires a URL");A=c(u.attributes);if(u.id){A.id=u.id;}return new Promise(function(r,R){_(u.url,A,r,R);});}};});
