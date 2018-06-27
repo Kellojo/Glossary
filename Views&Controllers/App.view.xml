@@ -33,11 +33,15 @@
       <Page id="Home">
 
       </Page>
-      <Page id="Tables">
-
-      </Page>
+      <GenericTile press="press">
+            <TileContent footer="August 21, 2016">
+                <NewsContent
+                    contentText="Tabelle 1"
+                    subheader="Today, SAP News" />
+            </TileContent>
+        </GenericTile>
       <Page id="User">
-          
+
       </Page>
   </content>
   </IconTabBar>
