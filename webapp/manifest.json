@@ -1,0 +1,48 @@
+{
+   "_version": "1.8.0",
+   "sap.app": {},
+   "sap.ui": {},
+   "sap.ui5": {
+
+      "rootView": {
+          "viewName": "Glossary.view.view.App",
+          "type": "XML",
+          "async": true,
+          "id": "app",
+          "bypassed": {
+               "target": "notFound"
+            }
+      },
+      "dependencies": {},
+      "models": {},
+      "routing": {
+         "config": {
+            "routerClass": "sap.m.routing.Router",
+            "viewType": "XML",
+            "viewPath": "Glossary.view",
+            "controlId": "app",
+            "controlAggregation": "pages",
+            "transition": "slide",
+            "async": true
+         },
+         "routes": [{
+            "pattern": "",
+            "name": "appHome",
+            "target": "home"
+         }],
+         "targets": {
+            "home": {
+               "viewId": "home",
+               "viewName": "Home",
+               "viewLevel" : 1
+            },
+            "notFound": {
+               "viewId": "notFound",
+               "viewName": "NotFound",
+               "transition": "show"
+            }
+         }
+
+      }
+   }
+}

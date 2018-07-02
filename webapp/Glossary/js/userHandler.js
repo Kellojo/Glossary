@@ -12,18 +12,6 @@ function register(username, password, isAutoLogin) {
     });
 }
 
-/* tries to login the user */
-function login(username, password) {
-    $.post("/php/login.php", {username: username, password: password}, function(result){
-        console.log(result);
-        if (result.includes("success")) {
-          showSuccessNotf("Login erfolgreich!");
-        	setUpDisplay("loggedIn");
-        } else {
-          showErrorNotf("Fehler beim Login!");
-        }
-    });
-}
 
 /* tries to change the password of the given user */
 function changePassword(newPassword, currentPassword) {

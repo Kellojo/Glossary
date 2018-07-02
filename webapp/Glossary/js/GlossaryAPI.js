@@ -1,5 +1,26 @@
 
 
+
+/*
+*       ### User Functions ###
+*/
+
+/* tries to login the user */
+function login(username, password) {
+    $.post("/php/login.php", {username: username, password: password}, function(result){
+        console.log(result);
+        if (result.includes("success")) {
+          console.log(new Date() + " Login erfolgreich!");
+
+        } else {
+          console.log(new Date() + " Fehler beim Login!");
+        }
+    });
+}
+
+
+
+
 /*
 *       ### Modify Words ###
 */

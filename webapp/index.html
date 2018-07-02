@@ -4,21 +4,23 @@
 	<title>Glossary</title>
 	<script
 		id="sap-ui-bootstrap"
-		src="/resources/sap-ui-core.js"
+		src="/webapp/resources/sap-ui-core.js"
 		data-sap-ui-theme="sap_belize"
 		data-sap-ui-libs="sap.m"
-		data-sap-ui-resourceroots='{"Glossary": "./Views&Controllers/"}'
+		data-sap-ui-resourceroots='{
+			"Glossary": "./"
+		}'
 		displayBlock="true">
 	</script>
 
 
-	<script src="js/GlossaryAPI.js"></script>
+	<script src="/webapp/Glossary/js/GlossaryAPI.js"></script>
 
 
 	<script>
 		sap.ui.getCore().attachInit(function () {
 			sap.ui.xmlview({
-			  viewName: "Glossary.App"
+			  viewName: "Glossary.view.App"
 			}).placeAt("content");
 		});
 	</script>
