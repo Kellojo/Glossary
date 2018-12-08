@@ -12,10 +12,18 @@ nav a {
 
 .menuContainer {
 	background-color: #D7803B;
-	width: 84px;
+    width: 0px;
+    padding: 0px;
+    margin: 0px;
 	height: 100%;
 	min-height: 100vh;
-	padding: 0px 5px 0px 5px;
+    
+    -webkit-transition: width 0.25s;
+}
+
+.menuContainer.show {
+    width: 84px;
+    padding: 0px 5px 0px 5px;
 }
 
 .menuIcon {

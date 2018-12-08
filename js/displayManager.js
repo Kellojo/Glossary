@@ -5,9 +5,9 @@ function setUpDisplay(state) {
     switch(state) {
 	    case "loggedIn":
 	       	$('#nav_login').hide();
-          $('#nav_register').hide();
-          $('#nav_logout').show();
-          $('#nav_user').show();
+            $('#nav_register').hide();
+            $('#nav_logout').show();
+            $('#nav_user').show();
   	    	$('#nav_addEntry').show();
   	    	$('#tabs_container').show();
           refreshTabs();

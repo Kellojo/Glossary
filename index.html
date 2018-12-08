@@ -1,5 +1,3 @@
-<?php @session_start(); ?>
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -10,33 +8,17 @@
 		<meta name="author" content="Kellojo (https://github.com/Kellojo)">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-		<link rel="stylesheet" href="css/basic.css">
-		<link rel="stylesheet" href="css/menu.css">
-		<link rel="stylesheet" href="css/tabs.css">
-		<link rel="stylesheet" href="css/table.css">
-		<link rel="stylesheet" href="css/form.css">
-
-		<link rel="stylesheet" href="css/thirdparty/contextMenu.css">
-		<link rel="stylesheet" href="css/thirdparty/notifIt.css">
-		<link rel="stylesheet" href="css/thirdparty/font-awesome-4.7.0/css/font-awesome.css">
-		<link rel="stylesheet" href="css/thirdparty/jquery-ui.min.css">
-
-
-		<script src="js/thirdparty/jquery-3.2.1.min.js"></script>
-		<script src="js/thirdparty/jquery-ui.min.js"></script>
-		<script src="js/thirdparty/notifIt.min.js"></script>
-
-		<script src="js/tabs.js"></script>
-		<script src="js/form.js"></script>
-		<script src="js/contextMenu.js"></script>
-		<script src="js/userHandler.js"></script>
-		<script src="js/displayManager.js"></script>
-		<script src="js/tableHandler.js"></script>
-		<script src="js/standardizedNotifications.js"></script>
-		<script src="js/init.js"></script>
+        <link rel="stylesheet" href="style/style.css">
 	</head>
 	<body>
+
+        <div id="splashScreen" class="splashScreen">
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+        </div>
 
 		<div class="mainBody">
 			<div class="menuContainer">
@@ -49,7 +31,7 @@
 				</nav>
 			</div>
 
-			<div>
+			<div style="display: none">
 				<div id="tabs_container" class="tab">
 				  	<button class="tablinks" onclick="$('#addTable').show(); currentlyOpenedForm = 'addTable';"><i class="fa fa-plus fa-lg black menuIcon"></i></button>
 				</div>
@@ -66,9 +48,20 @@
 				  		</thead>
 				  		<tbody id="table"></tbody>
 				  	</table>
-				</div>
-
-			</div>
+                </div>
+            </div>
+            
+        <div class="centerContent">
+            <div id="login" class="content">
+                <form>
+                    <div>Login to your Account</div>
+                    <div class="">
+                        <input type="text" id="form_email" placeholder="Email" name="username" required>
+                        <input type="password" id="form_password" placeholder="Password" name="password" required>
+                    </div>
+                </form>
+            </div>
+        </div>
 
 
 		<div id="insertWord" class="modal">
@@ -209,7 +202,7 @@
 		</div>
 
 
-	<ul class="contextMenu" hidden>
+	<!--ul class="contextMenu" hidden>
 	  	<li><a href="#" onclick="$('#insertWord').show(); $('ul.contextMenu').fadeOut('fast');"><i class="fa fa-plus"></i> Add</a></li>
 	  	<li>
 	  		<a href="#" onclick=" $('ul.contextMenu').fadeOut('fast');">
@@ -227,7 +220,7 @@
 	  	</li>
 	  	<li><a href="#" onclick="deleteWord($(selectedElement).parent().attr('data-wid')); $('ul.contextMenu').fadeOut('fast');"><i class="fa fa-trash"></i> Delete</a></li>
 	  	<li></li>
-	</ul>
+	</ul-->
 
 	</body>
 
@@ -235,14 +228,26 @@
 </html>
 
 
-<script>
-	<?php if (isset($_SESSION['currentTable']) && !empty($_SESSION['currentTable'])) {?>
+<link defered rel="stylesheet" href="style/less/basic.less">
+<link defered rel="stylesheet" href="style/less/menu.css">
+<link defered rel="stylesheet" href="style/less/tabs.css">
+<link defered rel="stylesheet" href="style/less/table.css">
+<link defered rel="stylesheet" href="style/less/form.css">
+<link defered rel="stylesheet" href="style/thirdparty/contextMenu.css">
+<link defered rel="stylesheet" href="style/thirdparty/notifIt.css">
+<link defered rel="stylesheet" href="style/thirdparty/font-awesome-4.7.0/css/font-awesome.css">
+<link defered rel="stylesheet" href="style/thirdparty/jquery-ui.min.css">
 
-		$( document ).ready(function() {
-			var activeTable = <?php echo $_SESSION["currentTable"]; ?>;
-			changeTable($("#tabs_container").children()[0] ,activeTable);
-		});
-	<?php } else {
-		echo "var activeTable = null;";
-	}?>
-</script>
+<script defered src="js/thirdparty/jquery-3.2.1.min.js" />
+<script defered src="js/thirdparty/jquery-ui.min.js"/>
+<script defered src="js/thirdparty/notifIt.min.js"/>
+<script defered src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"/>
+
+<script defered src="js/tabs.js"/>
+<script defered src="js/form.js"/>
+<script defered src="js/contextMenu.js"/>
+<script defered src="js/userHandler.js"/>
+<script defered src="js/displayManager.js"/>
+<script defered src="js/tableHandler.js"/>
+<script defered src="js/standardizedNotifications.js"/>
+<script defered src="js/init.js"/>

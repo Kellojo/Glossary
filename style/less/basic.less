@@ -1,11 +1,27 @@
 
 body {
-	margin : 0px;
+    margin : 0px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    .mobile {
+        
+    }
 }
 
 .mainBody {
-	display: grid;
-	grid-template-columns: 94px calc(100% - 94px);
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+
+    .bodyContent {
+        flex-grow: 1;
+    }
 }
 
 /* Farben */

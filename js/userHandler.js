@@ -1,14 +1,12 @@
 
 
 /* tries to login the user */
-function register(username, password, isAutoLogin) {
-    $.post("/php/register.php", {username: username, password: password}, function(result){
-        console.log(result);
-        if (isAutoLogin && result.includes("success")) {
-            login (username, password);
-        } else if (result.includes("userAlready")) {
-          showErrorNotf("Benutzername wird bereits verwendet!");
-        }
+function register(email, password, isAutoLogin) {
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        showErrorNotf(errorMessage);
     });
 }
 

@@ -2,7 +2,7 @@
 input[type=text], input[type=password], textarea[type=text], select {
     width: 100%;
     padding: 12px 20px;
-    margin: 8px 0;
+    margin: 0.25rem 0;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
@@ -58,6 +58,7 @@ input:valid {
     cursor: pointer;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.2);
 }
+
 .submitbtn:hover, .cancelbtn:hover {
     opacity: 0.8;
 }
