@@ -1,67 +1,142 @@
 
 //Colors
-@backgroundColor-highlight: white;
-@color-positive: yellowgreen;
-@color-darkPositive:darkolivegreen;
-@color-lightgrey: lightgrey;
-@color-witheAccent: #f4f4f4;
-@color-LightGreyAccent: #e4e4e4;
-@color-lightGreyBorder:#f2f2f2;
 @color-glossary: #D7803B;
+@color-grey: #666;
 
-@fontColor-default: #444;
-
-@linkColor-default: #1a73e8;
-
-//Paddings
-@quaterPadding: 0.25rem;
-@halfPadding: 0.5rem;
-@75Padding: 0.75rem;
-@defaultPadding: 1rem;
-@doublePadding: 2rem;
-
-//font sizes
-@TitleFontSize: 1.1rem;
-@ContentFontSize: 0.9rem;
-
-@IconSmallerFontSize: 1.25rem;
-@IconDefaultSize: 1.75rem;
-
-//shadows
-@defaultShadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
-
-//border radius
-@defaultBorderRadius: 3px;
-
-@menuHeight: 40px;
-@TabContainerHeight: 38px;
-@DialogHeaderHeight: 36px;
-
-
-
-.hidden {
-    display: none !important;
+.sapMListNoDataText {
+    color: @color-grey;
 }
 
-.noSelect {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
+.glossary-centeredPanel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 
-a {
-    color: @linkColor-default !important;
-    text-decoration: underline;
-    cursor: pointer;
-}
+    .sapMNav {
+        min-width:  15% !important;
+        max-width: 400px;
+        height: 350px !important;
 
-.mobile .scrollbarHiddenOnMobile {
-    &::-webkit-scrollbar {
-        display: none;
+
+
+        .submitButtonContainer {
+            align-items: center;
+            display: flex;
+
+            .sapMLnk {
+                margin-left: 1rem;
+            }
+        }
+
     }
-    -ms-overflow-style: none;
-    overflow: -moz-scrollbars-none;
+
+    
+}
+
+.glossary-errorMessageContainer {
+    position: absolute;
+    left: 2rem;
+    right: 2rem;
+    bottom: 2rem;
+
+    .sapMMsgStrip {
+        margin-top: 0.25rem;
+        width: 100%
+    }
+}
+
+.glossary-overview {
+
+    .sapMPanelContent {
+        height: unset !important;
+    }
+
+
+    .glossary-header {
+        background-color: #0060c0 !important;
+
+        .sapMText, .sapMBtnIcon  {
+            color: white !important;
+        }
+
+        &.sapMIBar .sapMBarChild:first-child {
+            margin-left: 1rem !important;
+        }
+        &.sapMIBar>.sapMBarChild:last-child {
+            margin-right: 1rem !important;
+        }
+
+        .glossary-appTitle {
+            font-weight: bold;
+            font-size: 1rem;
+        }
+    }
+
+    .glossary-overviewList {
+        height: 100%;
+
+        .sapMTB {
+            padding-left: 0rem !important;
+
+            .sapMComboBox {
+                margin-left: 0px;
+            }
+
+            >.sapMBarChild:last-child {
+                margin-right: 0px;
+            }
+        }
+
+        .sapMBarChild.sapMSF.sapMTBShrinkItem {
+            max-width: 250px;
+        }
+
+        .sapMListUl {
+            overflow: hidden auto;
+            height: -webkit-fill-available;
+        }
+
+        .glossary-listItem {
+
+            .heading {
+                min-width: 25%;
+                max-width: 25%;
+            }
+
+            .editIcon {
+                height: 0;
+                transition: opacity 0.25s ease;
+                opacity: 0; 
+                margin-left: 0.5rem;
+            }
+
+            .lastModifiedDate {
+                font-size: 0.75rem;
+            }
+
+            .description {
+                margin-left: 2rem;
+                margin-right: 1rem;
+                text-align: justify !important;
+            }
+
+            &:hover {
+                .editIcon {
+                    cursor: pointer;
+                    height: auto;
+                    opacity: 1;
+                    display: block;
+                }
+            }
+
+        }
+    }
+}
+
+.glossary-dialog {
+    .sapMDialogSection {
+        height: 100% !important;
+    }
 }

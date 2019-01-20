@@ -1,10 +1,60 @@
 {
-    "name": "Glossary",
-    "display": "standalone",
-    "icons": [
-        {
-            "src": "/img/Glossary_home_74x74.png",
-            "sizes": "74x74"
+
+    "sap.ui5": {
+
+        "models": {
+            "userModel": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "device": {
+                "type": "sap.ui.model.json.JSONModel"
+            }
+        },
+        
+        "rootView": {
+            "viewName": "com.glossary.view.app",
+            "type": "XML",
+            "async": true
+        },
+
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewPath": "com.glossary.view",
+                "viewType": "XML",
+                "async": true,
+                "transition": "slide",
+                "controlId": "idApp",
+                "controlAggregation": "pages",
+                "bypassed": {
+                    "target": "notFound"
+                }
+            },
+
+            "routes": [
+                {
+                    "name": "login",
+                    "pattern": "",
+                    "target": "login"
+                },
+                {
+                    "name": "overview",
+                    "pattern": "overview",
+                    "target": "overview"
+                }
+            ],
+
+            "targets": {
+                "notFound": {
+                    "viewName": "login"
+                },
+                "login": {
+                    "viewName": "login"
+                },
+                "overview": {
+                    "viewName": "overview"
+                }
+            }
         }
-    ]
+    }
 }

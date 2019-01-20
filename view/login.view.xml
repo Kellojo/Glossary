@@ -1,0 +1,52 @@
+<mvc:View
+	controllerName="com.glossary.controller.login"
+	xmlns="sap.m"
+    xmlns:u="sap.ui.unified"
+	xmlns:mvc="sap.ui.core.mvc"
+    xmlns:html="http://www.w3.org/1999/xhtml">
+
+        <Page showHeader="false">
+            
+            <content>
+                <html:div class="glossary-centeredPanel">
+                    <NavContainer id="idNavContainer" initialPage="idLoginPanel">
+
+                        <Page showHeader="false" id="idLoginPanel">
+                            <Panel headerText="Login to your Account">
+                                <Label text="E-Mail Address" labelFor="idLoginEmailInput"/>
+                                <Input id="idLoginEmailInput" type="Email" placeholder="Enter E-Mail Address ..."  value="{usermodel>/email}" liveChange="onInputLiveChangeEmail"/>
+
+
+
+                                <Label text="Password" labelFor="idLoginPasswordInput"/>
+                                <Input id="idLoginPasswordInput" type="Password" placeholder="Enter Password ..." value="{usermodel>/password}" liveChange="onInputLiveChangePassword"/>
+
+                                <HBox class="submitButtonContainer">
+                                    <Button text="Login" type="Emphasized" press="onLoginButtonPress"/>
+                                    <Link text="Click here to register" press="onToRegistrationPress"/>
+                                </HBox>
+                            </Panel>
+                        </Page>
+
+                        <Page showHeader="false" id="idRegistrationPanel">
+                            <Panel headerText="Create a new Account">
+
+                                <Label text="E-Mail Address" labelFor="idRegisterEmailInput"/>
+                                <Input id="idRegisterEmailInput" type="Email" placeholder="Enter E-Mail Address ..."  value="{usermodel>/email}" liveChange="onInputLiveChangeEmail"/>
+
+                                <Label text="Password" labelFor="idRegisterPasswordInput"/>
+                                <Input id="idRegisterPasswordInput" type="Password" placeholder="Enter Password ..." value="{usermodel>/password}" liveChange="onInputLiveChangePassword"/>
+
+                                <HBox class="submitButtonContainer">
+                                    <Button text="Register" type="Emphasized" press="onRegistrationButtonPress"/>
+                                    <Link text="Click here to login" press="onToLoginPress"/>
+                                </HBox>
+                            </Panel>
+                        </Page>
+
+                    </NavContainer>
+                </html:div>
+            </content>
+        </Page>
+
+</mvc:View>

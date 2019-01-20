@@ -1,18 +1,5 @@
 
 
-/* tries to login the user */
-function register(email, password, isAutoLogin) {
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        showErrorNotf(errorMessage);
-        goToRegistration();
-
-        GlossaryConfig.controls.loginAndRegistration.registrationForm.passwordInput.val("");
-    });
-}
-
 /* grabs the user input and sends it to the register function and logs the user in after completion */
 function onRegistrationButtonPress() {
     var email = GlossaryConfig.controls.loginAndRegistration.registrationForm.emailInput.val().trim();
@@ -29,18 +16,7 @@ function onRegistrationButtonPress() {
     var status = register(email, password, true);
 }
 
-/* tries to login the user */
-function login(email, password) {
-    firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        showErrorNotf(errorMessage);
-        goToLogin();
 
-        GlossaryConfig.controls.loginAndRegistration.loginForm.passwordInput.val("");
-    });
-}
 
 /* graps the user input and sends it to the login function */
 function onLoginButtonPress() {
@@ -80,18 +56,7 @@ function onAuthStateChanged(oUser) {
     hideSplashScreen();
 }
 
-/* tries to change the password of the given user */
-function changePassword(newPassword, currentPassword) {
-    $.post("/php/changePassword.php", {password: currentPassword, newPassword: newPassword}, function(result){
-        if (result.includes("success")) {
-          showSuccessNotf("Password wurde geändert!");
-        } else if (result.includes("invalidSession")) {
-          showErrorNotf("Bitte loggen sie sich erneut ein.");
-        } else {
-          showErrorNotf("Fehler beim Ändern des Passworts!");
-        }
-    });
-}
+
 
 /* grabs the user input and sends it to the changePassword function to change the password */
 function grabChangePassword() {
@@ -101,13 +66,6 @@ function grabChangePassword() {
     $('#form_user_currentPassword').val("");
 }
 
-/* tries to login the user */
-function logout() {
-    firebase.auth().signOut().catch(function (error) {
-        // An error happened.
-        showErrorNotf(error.message);
-    });
-}
 
 /* Handles hotkeys */
 function handleKeyInput(input) {

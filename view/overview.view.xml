@@ -1,0 +1,78 @@
+<mvc:View
+	controllerName="com.glossary.controller.overview"
+	xmlns="sap.m"
+    xmlns:u="sap.ui.unified"
+	xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    height="100%">
+
+        <Page class="glossary-overview">
+            <customHeader>
+                <Toolbar class="glossary-header">
+                    <Text text="Glossary" class="glossary-appTitle"/>
+                    <ToolbarSpacer />
+                    <Text text="{
+						path: 'userModel>user/id',
+						formatter: '.formatWelcomeMessage'
+					}" visible="{= !${device>/system/phone}}"/>
+
+                    <Button type="Transparent" visible="{= ${device>/system/phone}}" press="onAddWord" icon="sap-icon://add"/>
+                    <Button press="onLogoutPress" icon="sap-icon://log"/>
+                </Toolbar>
+            </customHeader>
+
+            <content>
+                <PullToRefresh id="idPullToRefresh" refresh="refresh" visible="{= ${device>/system/phone}}"/>
+
+                <Panel height="100%">
+                    <List id="idWordsList" 
+                        noDataText="No Entries found..."
+                        growing="true" 
+                        growingScrollToLoad="true" 
+                        growingThreshold="50" 
+                        items="{/currentTable/items}" 
+                        class="glossary-overviewList">
+
+                        <headerToolbar>
+                            <Toolbar>
+                                <ComboBox id="idTableComboBox" selectionChange="onTableSelectionChange" placeholder="Table"
+                                    items="{
+                                        path: '/tables',
+                                        sorter: { path: 'text' }
+                                    }">
+                                    <core:ListItem key="{id}" text="{name}" additionalText = "{key}"/>
+                                </ComboBox>
+                                <ToolbarSpacer />
+                                <SearchField liveChange="onSearch"/>
+                                <Button type="Transparent" visible="{= !${device>/system/phone}}" press="refresh" icon="sap-icon://synchronize"/>
+                                <Button type="Transparent" visible="{= !${device>/system/phone}}" press="onAddWord" icon="sap-icon://add"/>
+                            </Toolbar>
+                        </headerToolbar>
+                    
+                        <items>
+                            <CustomListItem
+                                class="glossary-listItem">
+                                <HBox class="sapUiSmallMarginBegin .sapUiSmallMarginEnd sapUiSmallMarginTopBottom">
+                                    <VBox class="heading">
+                                    <HBox>
+                                        <Link text="{word}" press="handlePress"/>
+                                        <core:Icon class="editIcon" src="sap-icon://edit" press="handlePress"/>
+                                    </HBox>
+                                        <Label text="{source}"/>
+                                        <Label class="lastModifiedDate" text="{
+                                            path: 'lastModifiedAt',
+						                    formatter: '.formatFirebaseTimestamp'}"/>
+                                    </VBox>
+                                        <Text text="{description}" class="description"/>
+                                </HBox>
+
+                            </CustomListItem>
+                        </items>
+                    </List>
+                </Panel>
+
+            </content>
+        </Page>
+
+</mvc:View>
