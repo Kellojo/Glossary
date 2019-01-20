@@ -3,24 +3,36 @@
 /* changes the state of the website */
 function setUpDisplay(state) {
     switch(state) {
-	    case "loggedIn":
+        case "loggedIn":
+            Glossary.config.controls.menuContainer.show();
 	       	$('#nav_login').hide();
             $('#nav_register').hide();
             $('#nav_logout').show();
             $('#nav_user').show();
   	    	$('#nav_addEntry').show();
-  	    	$('#tabs_container').show();
-          refreshTabs();
+            $('#tabs_container').show();
+            setActionsVisibility(false);
+            setTableOverviewVisibility(true);
+            setMenuVisibility(true);
+
+            //query data
+            updateWholeUiAfterLogin();
 	        break;
-	    default:
-	    	$('#nav_login').show();
-	    	$('#nav_register').show();
+        default:
+            Glossary.config.controls.menuContainer.hide();
+            $('#nav_login').hide();
+            $('#nav_register').hide();
 	    	$('#nav_logout').hide();
 	    	$('#nav_user').hide();
 	    	$('#nav_addEntry').hide();
 	    	$('#tabs_container').hide();
-	    	$('#tableContainer').hide();
-	    	clearTable();
+            $('#tableContainer').hide();
+            setActionsVisibility(true);
+            setTableOverviewVisibility(false);
+            setMenuVisibility(false);
+            updateAvatar(false);
+            clearTable();
+            goToLogin();
 	        break;
 	}
 }

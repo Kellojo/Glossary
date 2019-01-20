@@ -6,6 +6,10 @@
 
 /* Shows a success message */
 function showSuccessNotf(text) {
+    if (Glossary.isMobile) {
+        return;
+    }
+
   if (text == null) {
     text = "Erfolgreich!";
   }
@@ -25,6 +29,10 @@ function showSuccessNotf(text) {
 
 /* Shows an error message */
 function showErrorNotf(text) {
+    if (Glossary.isMobile) {
+        return;
+    }
+
   if (text == null) {
     text = "Ein Fehler ist aufgetreten!";
   }

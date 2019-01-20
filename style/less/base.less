@@ -3,19 +3,29 @@
 @backgroundColor-highlight: white;
 @color-positive: yellowgreen;
 @color-darkPositive:darkolivegreen;
+@color-lightgrey: lightgrey;
+@color-witheAccent: #f4f4f4;
+@color-LightGreyAccent: #e4e4e4;
+@color-lightGreyBorder:#f2f2f2;
+@color-glossary: #D7803B;
 
 @fontColor-default: #444;
 
 @linkColor-default: #1a73e8;
 
 //Paddings
+@quaterPadding: 0.25rem;
 @halfPadding: 0.5rem;
 @75Padding: 0.75rem;
 @defaultPadding: 1rem;
 @doublePadding: 2rem;
 
 //font sizes
-@TitleFontSize: 1.5rem;
+@TitleFontSize: 1.1rem;
+@ContentFontSize: 0.9rem;
+
+@IconSmallerFontSize: 1.25rem;
+@IconDefaultSize: 1.75rem;
 
 //shadows
 @defaultShadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
@@ -23,15 +33,35 @@
 //border radius
 @defaultBorderRadius: 3px;
 
+@menuHeight: 40px;
+@TabContainerHeight: 38px;
+@DialogHeaderHeight: 36px;
 
 
 
 .hidden {
-    display: none;
+    display: none !important;
+}
+
+.noSelect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 a {
-    color: @linkColor-default;
+    color: @linkColor-default !important;
     text-decoration: underline;
     cursor: pointer;
+}
+
+.mobile .scrollbarHiddenOnMobile {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
 }

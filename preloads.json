@@ -1,0 +1,5 @@
+{
+"dialog": "<div class='overlay'>    <dialog class='dialog' open>        <div class='header'> { DialogTitle }</div>        <div class='content'></div>        <div class='footer'>            <div class='rightContainer'>                <button class='Glossary-BasicButton'>{CancelText}</button>                <button class='Glossary-BasicButton emphasized'>{DoneText}</button>            </div>        </div>    </dialog></div>",
+"tableListItem": "<div class='listItem table' onclick='{onclick}'>    <div class='VBox'>        <div class='word'>{word}</div>        <div class='source'>{source}</div>        <div class='description'>{description}</div>    </div>        <i class='fa fa-angle-right navigationIcon'></i></div>",
+"tableTab": "<div class='tab noSelect' onclick='{onclick}'>    {name}</div>"
+}

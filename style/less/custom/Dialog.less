@@ -1,0 +1,79 @@
+
+.dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2000;
+    margin: 0;
+    padding: 0;
+    border-radius: 3px;
+
+    min-width: 250px;
+    min-height: 400px;
+
+
+    border:none;
+    box-shadow: @defaultShadow;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        height: @DialogHeaderHeight;
+        text-align: center;
+
+        background-color: @color-glossary;
+        color: white;
+
+    }
+
+    .content {
+        padding: @halfPadding;
+        width: -webkit-fill-available;
+        height: calc(100% - (@DialogHeaderHeight * 2 + 2 * @halfPadding));
+
+        font-size: @ContentFontSize;
+    }
+
+    .footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        height: @DialogHeaderHeight;
+        text-align: center;
+        border-top: 1px solid @color-lightGreyBorder;
+        background-color: @color-witheAccent;
+        color: white;
+
+        font-size: @ContentFontSize;
+
+        .rightContainer {
+            margin-left: auto;
+        }
+
+        
+    }
+}
+
+.mobile .dialog {
+    min-width: 100vw;
+    min-height: 100vh;
+}
+
+.overlay {
+    background-color: rgba(0,0,0,0.2);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}

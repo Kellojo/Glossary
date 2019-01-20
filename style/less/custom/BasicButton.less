@@ -1,0 +1,29 @@
+.Glossary-BasicButton {
+
+    margin-right: @halfPadding;
+    border-radius: 3px;
+    border: none;
+    background-color: @backgroundColor-highlight;
+    padding: @quaterPadding;
+
+    font-size: @ContentFontSize;
+    cursor: pointer;
+    box-shadow: @defaultShadow;
+
+    &:active {
+        background-color: @color-glossary;
+        color: @backgroundColor-highlight;
+    }
+
+    &.emphasized {
+        color: @linkColor-default;
+
+        &:active {
+            color: @backgroundColor-highlight;
+        }
+    }
+
+    &:first-child {
+        margin-left: @halfPadding;
+    }
+}

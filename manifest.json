@@ -1,0 +1,10 @@
+{
+    "name": "Glossary",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "/img/Glossary_home_74x74.png",
+            "sizes": "74x74"
+        }
+    ]
+}

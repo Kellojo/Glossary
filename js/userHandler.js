@@ -7,20 +7,77 @@ function register(email, password, isAutoLogin) {
         var errorCode = error.code;
         var errorMessage = error.message;
         showErrorNotf(errorMessage);
+        goToRegistration();
+
+        GlossaryConfig.controls.loginAndRegistration.registrationForm.passwordInput.val("");
     });
 }
 
+/* grabs the user input and sends it to the register function and logs the user in after completion */
+function onRegistrationButtonPress() {
+    var email = GlossaryConfig.controls.loginAndRegistration.registrationForm.emailInput.val().trim();
+    var password = GlossaryConfig.controls.loginAndRegistration.registrationForm.passwordInput.val().trim();
+
+    /* Abort the login process if the password and or username input fields are empty */
+    if (email == "" || password == "") {
+        showErrorNotf("Please enter a valid email and password");
+        return;
+    }
+
+    /* register the new user */
+    goToBusy();
+    var status = register(email, password, true);
+}
+
 /* tries to login the user */
-function login(username, password) {
-    $.post("/php/login.php", {username: username, password: password}, function(result){
-        console.log(result);
-        if (result.includes("success")) {
-          showSuccessNotf("Login erfolgreich!");
-        	setUpDisplay("loggedIn");
-        } else {
-          showErrorNotf("Fehler beim Login!");
-        }
+function login(email, password) {
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        showErrorNotf(errorMessage);
+        goToLogin();
+
+        GlossaryConfig.controls.loginAndRegistration.loginForm.passwordInput.val("");
     });
+}
+
+/* graps the user input and sends it to the login function */
+function onLoginButtonPress() {
+    var email = GlossaryConfig.controls.loginAndRegistration.loginForm.emailInput.val().trim();
+    var password = GlossaryConfig.controls.loginAndRegistration.loginForm.passwordInput.val().trim();
+
+    /* Abort the login process if the password and or email input fields are empty */
+    if (email == "" || password == "") {
+        showErrorNotf("Please enter a valid email and password");
+        return;
+    }
+
+    /* login */
+    goToBusy();
+    login(email, password);
+}
+
+/* Called when the authentication was successfull */
+function onAuthStateChanged(oUser) {
+    if (oUser) {
+        Glossary.currentUser = oUser;
+        showSuccessNotf("Welcome " + getUserDisplayName());
+        console.log("Login successfull");
+
+        setUpDisplay("loggedIn");
+
+        GlossaryConfig.controls.loginAndRegistration.loginForm.emailInput.val("");
+        GlossaryConfig.controls.loginAndRegistration.registrationForm.emailInput.val("");
+        GlossaryConfig.controls.loginAndRegistration.loginForm.passwordInput.val("");
+        GlossaryConfig.controls.loginAndRegistration.registrationForm.passwordInput.val("");
+    } else {
+        setUpDisplay("loggedOut");
+        Glossary.currentUser = null;
+        goToLogin();
+    }
+
+    hideSplashScreen();
 }
 
 /* tries to change the password of the given user */
@@ -36,44 +93,6 @@ function changePassword(newPassword, currentPassword) {
     });
 }
 
-/* graps the user input and sends it to the login function */
-function grabLogin() {
-
-  var username = $("#form_username").val().trim();
-  var password = $("#form_password").val().trim();
-
-  /* Abort the login process if the password and or username input fields are empty */
-  if (username == "" || password == "") {
-    showErrorNotf("Bitte gib einen Benutzernamen und ein Passwort ein.");
-    return;
-  }
-
-  /* login */
-  login(username, password);
-  $('#login').hide();
-  $('#form_username').val("");
-  $('#form_password').val("");
-}
-
-/* grabs the user input and sends it to the register function and logs the user in after completion */
-function grabRegistration() {
-
-  var username = $("#form_registration_username").val().trim();
-  var password = $("#form_registration_password").val().trim();
-
-  /* Abort the login process if the password and or username input fields are empty */
-  if (username == "" || password == "") {
-    showErrorNotf("Bitte gib einen Benutzernamen und ein Passwort ein.");
-    return;
-  }
-
-  /* register the new user */
-  var status = register(username, password, true);
-  $('#register').hide();
-  $('#form_registration_username').val("");
-  $('#form_registration_password').val("");
-}
-
 /* grabs the user input and sends it to the changePassword function to change the password */
 function grabChangePassword() {
     var status = changePassword($('#form_user_newPassword').val(), $('#form_user_currentPassword').val(), true);
@@ -84,12 +103,9 @@ function grabChangePassword() {
 
 /* tries to login the user */
 function logout() {
-    $.post("/php/logout.php", {}, function(result){
-        console.log(result);
-        if (result == "success") {
-        	setUpDisplay("loggedOut");
-          showSuccessNotf("See you soon!");
-        }
+    firebase.auth().signOut().catch(function (error) {
+        // An error happened.
+        showErrorNotf(error.message);
     });
 }
 

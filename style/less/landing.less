@@ -1,71 +1,112 @@
 
-.centeredContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+@navContainer-AnimationSpeed: 0.5s;
 
-    .content {
+.mainNavContainer {
+    width: 100%;
+    height: calc(100% - @TabContainerHeight - @menuHeight);
+
+    .centeredContainer {
         display: flex;
         align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
 
-        box-shadow: @defaultShadow;
-        background-color: @backgroundColor-highlight;
-        padding: @defaultPadding;
-        border-radius: @defaultBorderRadius;
+        position: absolute;
+        top: 0;
+        left: -100%;
 
-        min-height: 200px;
+        font-size: 10rem;
+        color: white;
 
-        form {
-            flex-grow: 1;
-        }
+        .content {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            justify-content: center;
 
-        .heading {
-            padding-bottom: @doublePadding;
-            text-align: center;
-            font-weight: bold;
-        }
+            box-shadow: @defaultShadow;
+            background-color: @backgroundColor-highlight;
+            padding: @defaultPadding;
+            border-radius: @defaultBorderRadius;
 
-        .inputContainer {
-            margin-bottom: @halfPadding;
-        }
+            min-height: 200px;
 
-        .HBox {
-
-            .additionalText {
-                align-self: center;
-                margin-left: auto;
-                font-size: @75Padding;
+            &.fill {
+                width: 100%;
+                height: 100%;
+                padding: 0;
             }
 
-            .submitButton {
-                background-color: @color-positive;
-                border: none;
-                color: white;
-                padding: 15px 32px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                margin: 4px 2px;
-                cursor: pointer;
-                border-radius: @defaultBorderRadius;
-                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.2);
-                -webkit-transition: background-color 0.25s;
+            form {
+                flex-grow: 1;
+            }
 
-                &:hover {
-                    background-color: @color-darkPositive;
+            .heading {
+                padding-bottom: @doublePadding;
+                text-align: center;
+                font-weight: bold;
+            }
+
+            .inputContainer {
+                margin-bottom: @halfPadding;
+            }
+
+            .HBox {
+
+                .additionalText {
+                    align-self: center;
+                    margin-left: auto;
+                    font-size: @75Padding;
+                }
+
+                .submitButton {
+                    background-color: @color-positive;
+                    border: none;
+                    color: white;
+                    padding: 15px 32px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 16px;
+                    margin: 4px 2px;
+                    cursor: pointer;
+                    border-radius: @defaultBorderRadius;
+                    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.2);
+                    -webkit-transition: background-color 0.25s;
+
+                    &:hover {
+                        background-color: @color-darkPositive;
+                    }
                 }
             }
+
+            .loginSuccess {
+                padding-bottom: @doublePadding;
+                text-align: center;
+                font-weight: bold;
+            }
+            
         }
 
-        .loginSuccess {
-            padding-bottom: @doublePadding;
-            text-align: center;
-            font-weight: bold;
+        &.navedAwayFrom {
+            transform: translate3d(+200%, 0, 0);
+            transition: transform @navContainer-AnimationSpeed ease;
         }
-        
+
+        &.navLeft {
+            transform: translate3d(+100%, 0, 0);
+            transition: transform @navContainer-AnimationSpeed ease;
+        }
+
+        &.navRight {
+            transform: translate3d(0, 0, 0);
+            transition: transform @navContainer-AnimationSpeed ease;
+        }
+
+        &.showInstantly {
+            transform: translate3d(+100%, 0, 0);
+        }
     }
 }
 
