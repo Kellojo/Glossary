@@ -3,8 +3,9 @@ sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageToast",
     "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator"
-], function (Controller, JSONModel, MessageToast, Filter, FilterOperator) {
+    "sap/ui/model/FilterOperator",
+    "sap/m/MessageBox"
+], function (Controller, JSONModel, MessageToast, Filter, FilterOperator, MessageBox) {
     "use strict";
 
     var Controller = Controller.extend("com.glossary.controller.Overview", {});
@@ -132,30 +133,55 @@ sap.ui.define([
         }
     };
 
-    ControllerProto.onAddWord = function(oEvent) {
-        //generate sources array
+    ControllerProto.onEditWord = function (oEvent) {
+        var oSource = oEvent.getSource(),
+            oWord = "";
 
-
-        //generate words array
-        var aWords = [],
-            aSources = [],
-            aItems = this.m_oListModel.getProperty("/currentTable/items");
-
-        for(var i in aItems) {
-            var oItem = aItems[i];
-            if (aWords.indexOf(oItem.word) < 0) {
-                aWords.push(oItem.word);
-            }
-            if (aSources.indexOf(oItem.source) < 0) {
-                aSources.push(oItem.source);
-            }
+        if (oSource.getBinding("alt")) {
+            oWord = oSource.getBinding("alt").getContext().getObject();
+        } else if (oSource.getBinding("text")) {
+            oWord = oSource.getBinding("text").getContext().getObject();
         }
 
+        if (oWord) {
+            this.editWord(oWord);
+        }
+    };
+
+    ControllerProto.onDeleteWord = function(oEvent) {
+        var oSource = oEvent.getSource(),
+            oWord = oSource.getBinding("alt").getContext().getObject();
+
+        if (oWord) {
+            MessageBox.warning(
+                "Are you sure you want to delete \"" + oWord.word + "\"? \nThis is going to remove the word  permanently from this table. It can not be restored.",
+                {
+                    actions: [sap.m.MessageBox.Action.OK, sap.m.MessageBox.Action.CANCEL],
+                    styleClass: "sapUiSizeCompact",
+                    onClose: function (sAction) {
+                        if (sAction === sap.m.MessageBox.Action.OK) {
+                            this.getOwnerComponent().RestClient.deleteWord(oWord, this.onWordDeleted.bind(this, oWord));
+                        }
+                    }.bind(this)
+                }
+            );
+        }
+    };
+
+    ControllerProto.onWordDeleted = function(oWord) {
+        MessageToast.show("Successfully deleted \"" + oWord.word + "\"");
+        this.refresh();
+    };
+
+    ControllerProto.onAddWord = function(oEvent) {
         this.getOwnerComponent().openAddWordDialog({
-            tableId: this.m_oListModel.getProperty("/currentTable/id"),
+            title: "Add Word",
             fnOnSubmit: this.onWordAdded.bind(this),
-            words: aWords,
-            sources: aSources
+            words: this.getWordsAndSourcesArray().words,
+            sources: this.getWordsAndSourcesArray().sources,
+            word:{
+                table: this.m_oListModel.getProperty("/currentTable/id")
+            }
         });
     };
 
@@ -163,10 +189,50 @@ sap.ui.define([
         this.loadTableWords(this.m_oTableComboBox.getSelectedItem().getKey());
     };
 
+    ControllerProto.onListItemPress = function (oEvent) {
+        var oWord = oEvent.getParameter("listItem").getBindingContext().getObject();
+        this.editWord(oWord);
+    };
+
     // --------------------------------
     // Utility
     // --------------------------------
 
+    ControllerProto.editWord = function(oWord) {
+        this.getOwnerComponent().openAddWordDialog({
+            tableId: this.m_oListModel.getProperty("/currentTable/id"),
+            fnOnSubmit: this.onWordAdded.bind(this),
+            words: this.getWordsAndSourcesArray().words,
+            sources: this.getWordsAndSourcesArray().sources,
+            title: "Edit Word",
+            word: oWord
+        });
+    };
+
+    ControllerProto.getWordsAndSourcesArray = function() {
+
+        //generate sources array
+        //generate words array
+        var aWords = [],
+            aSources = [],
+            aItems = this.m_oListModel.getProperty("/currentTable/items");
+
+        for (var i in aItems) {
+            var oItem = aItems[i];
+            if (aWords.indexOf(oItem.word) < 0 && oItem.word.trim()) {
+                aWords.push(oItem.word.trim());
+            }
+            if (aSources.indexOf(oItem.source) < 0 && oItem.source.trim()) {
+                aSources.push(oItem.source.trim());
+            }
+        }
+
+        return {
+            words: aWords,
+            sources: aSources
+        };
+    };
+    
     ControllerProto.formatWelcomeMessage = function(sUsername) {
         var oUserModel = this.getOwnerComponent().getModel("userModel"),
             sUsername = oUserModel.getProperty("/user/email");
@@ -174,8 +240,15 @@ sap.ui.define([
     };
 
     ControllerProto.formatFirebaseTimestamp = function(otimestamp) {
+        var oDate = new Date(otimestamp.seconds * 1000),
+            iMonth = oDate.getMonth() + 1,
+            sMonth = iMonth < 10 ? "0" + iMonth : iMonth;
+        return oDate.getDate() + "." + sMonth + "." + oDate.getFullYear()
+    };
+
+    ControllerProto.formatFirebaseTimestampLong = function (otimestamp) {
         var oDate = new Date(otimestamp.seconds * 1000);
-        return oDate.getDate() + "." + (oDate.getMonth() + 1) + "." + oDate.getFullYear()
+        return "last modified " + oDate.toLocaleString();
     };
 
     return Controller;

@@ -17,9 +17,7 @@ sap.ui.define([
 
     ControllerProto.onInit = function () {
         this.m_oWordModel = new JSONModel({
-            word: "",
-            description: "",
-            source: "",
+            word: null,
 
             words: [],
             sources: []
@@ -38,6 +36,10 @@ sap.ui.define([
         this.m_oSettings = oSettings;
         this.m_oWordModel.setProperty("/words", oSettings.words);
         this.m_oWordModel.setProperty("/sources", oSettings.sources);
+
+        if (oSettings.word) {
+            this.m_oWordModel.setProperty("/word", oSettings.word);
+        }
     };
 
     ControllerProto.onCloseInDialog = function () {
@@ -45,15 +47,11 @@ sap.ui.define([
     };
 
     ControllerProto.onSubmitButtonPress = function() {
-        var sWord = this.m_oWordInput.getValue(),
-            sDescription = this.m_oDescriptionInput.getValue(),
-            sSource = this.m_oSourceInput.getValue();
+        var oWord = this.m_oWordModel.getProperty("/word");
 
-        if (sWord && this.m_oSettings.tableId) {
-            this.getOwnerComponent().RestClient.addWord(sWord, sDescription, sSource, this.m_oSettings.tableId, function() {
-                MessageToast.show("Successfully added \"" + sWord + "\"");
-            });
-        }
+        this.getOwnerComponent().RestClient.addWord(oWord, function() {
+            MessageToast.show("Successfully added \"" + oWord.word + "\"");
+        });
     };
 
     // ------------------------------

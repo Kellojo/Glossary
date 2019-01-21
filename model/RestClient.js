@@ -117,31 +117,38 @@ sap.ui.define([
                         fnSuccess(doc.docs);
                     }
                 }
-            }).catch(function (error) {
-                console.error("Error getting document:", error);
-            });
+            }).catch(this.generateErrorHandler());
     };
 
     /**
      * Creates a word in the given table
      */
-    Manager.addWord = function (word, desciption, source, tableId, fnSuccess) {
+    Manager.addWord = function (oWord, fnSuccess) {
         var userId = this.m_oCurrentUser.uid;
-        if (userId && word && tableId) {
-            firebase.firestore().collection("words").doc().set({
-                word: word,
-                description: desciption,
-                source: source,
+        if (userId && oWord.word && oWord.table) {
 
-                table: tableId,
-                owner: userId,
+            oWord.createdAt = oWord.createdAt || new Date();
+            oWord.lastModifiedAt = new Date();
 
-                createdAt: new Date(),
-                lastModifiedAt: new Date()
-            }).then(function () {
-                fnSuccess();
-            });
+            if (oWord.id) {
+                firebase.firestore().collection("words").doc(oWord.id).set(oWord)
+                .then(fnSuccess)
+                .catch(this.generateErrorHandler());
+            } else {
+                firebase.firestore().collection("words").doc().set(oWord)
+                .then(fnSuccess)
+                .catch(this.generateErrorHandler());
+            }
         }
+    };
+
+    /**
+     * Deletes the given word
+     */
+    Manager.deleteWord = function (oWord, fnSuccess) {
+        firebase.firestore().collection("words").doc(oWord.id).delete()
+        .then(fnSuccess)
+        .catch(this.generateErrorHandler());
     };
 
 

@@ -73,6 +73,13 @@
   min-width: 25%;
   max-width: 25%;
 }
+.glossary-overview .glossary-overviewList .glossary-listItem .wordContainer {
+  width: 100%;
+}
+.glossary-overview .glossary-overviewList .glossary-listItem .wordContainer .sapMFlexItem:first-child,
+.glossary-overview .glossary-overviewList .glossary-listItem .wordContainer .word {
+  max-width: 100%;
+}
 .glossary-overview .glossary-overviewList .glossary-listItem .editIcon {
   height: 0;
   transition: opacity 0.25s ease;

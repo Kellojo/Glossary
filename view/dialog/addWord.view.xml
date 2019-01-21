@@ -9,7 +9,7 @@
     <Panel>
 
         <Label text="Word" labelFor="idWordInput"/>
-        <Input id="idWordInput" placeholder="Enter Word ..." value="{/word}" 
+        <Input id="idWordInput" placeholder="Enter Word ..." value="{/word/word}" 
             showSuggestion="true"
             suggest="onHandleSuggest"
             suggestionItems="{/words}">
@@ -19,17 +19,12 @@
         </Input>
 
         <Label text="Description" labelFor="idDescriptionInput"/>
-        <TextArea id="idDescriptionInput" placeholder="Enter Description ..." value="{/description}" width="100%" height="100px" liveChange=""/>
+        <TextArea id="idDescriptionInput" placeholder="Enter Description ..." value="{/word/description}" width="100%" height="100px" liveChange=""/>
 
         <Label text="Source" labelFor="idSourceInput"/>
-        <Input id="idSourceInput" placeholder="Enter Source ..." value="{/source}" liveChange=""
-            showSuggestion="true"
-            suggest="onHandleSuggest"
-            suggestionItems="{/sources}">
-            <suggestionItems>
-                <core:Item text="{}" />
-            </suggestionItems>
-        </Input>
+        <ComboBox width="100%" id="idSourceInput" placeholder="Enter Source ..." value="{/word/source}" items="{/sources}">
+            <core:ListItem key="{}" text="{}"/>
+        </ComboBox>
     </Panel>
 
 </mvc:View>

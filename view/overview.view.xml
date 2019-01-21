@@ -30,8 +30,15 @@
                         noDataText="No Entries found..."
                         growing="true" 
                         growingScrollToLoad="true" 
-                        growingThreshold="50" 
-                        items="{/currentTable/items}" 
+                        growingThreshold="50"
+                        itemPress="onListItemPress"
+                        items="{
+                            path : '/currentTable/items',
+                            sorter : {
+                                path : 'lastModifiedAt/seconds',
+                                descending : true
+                            }
+                        }" 
                         class="glossary-overviewList">
 
                         <headerToolbar>
@@ -52,19 +59,22 @@
                     
                         <items>
                             <CustomListItem
+                                type="Active"
                                 class="glossary-listItem">
                                 <HBox class="sapUiSmallMarginBegin .sapUiSmallMarginEnd sapUiSmallMarginTopBottom">
                                     <VBox class="heading">
-                                    <HBox>
-                                        <Link text="{word}" press="handlePress"/>
-                                        <core:Icon class="editIcon" src="sap-icon://edit" press="handlePress"/>
-                                    </HBox>
-                                        <Label text="{source}"/>
+                                        <HBox class="wordContainer">
+                                            <Link text="{word}" tooltip="{word}" press="onEditWord" class="word"/>
+                                            <core:Icon class="editIcon" src="sap-icon://delete" alt="{word}" press="onDeleteWord"/>
+                                        </HBox>
+                                        <Label text="{source}" tooltip="{source}"/>
                                         <Label class="lastModifiedDate" text="{
                                             path: 'lastModifiedAt',
-						                    formatter: '.formatFirebaseTimestamp'}"/>
+						                    formatter: '.formatFirebaseTimestamp'}" tooltip="{
+                                            path: 'lastModifiedAt',
+						                    formatter: '.formatFirebaseTimestampLong'}"/>
                                     </VBox>
-                                        <Text text="{description}" class="description"/>
+                                    <Text text="{description}" tooltip="{description}" class="description"/>
                                 </HBox>
 
                             </CustomListItem>

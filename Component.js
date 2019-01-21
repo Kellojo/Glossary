@@ -66,9 +66,6 @@ sap.ui.define([
     };
 
     ComponentProto.openAddWordDialog = function (oSettings) {
-        oSettings = jQuery.extend(oSettings, {
-            title: "Add Word"
-        });
         this.openDialog("addWord", oSettings);
     };
 
@@ -108,7 +105,7 @@ sap.ui.define([
         oDialog.setBeginButton(oCloseButton);
 
         var oSubmitButton = new sap.m.Button({
-            text: "Add Word",
+            text: oSettings.submitText || "Submit",
             type: "Emphasized",
             press: function() {
                 oSettings.fnOnSubmit(oDialog);
