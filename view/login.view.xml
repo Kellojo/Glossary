@@ -14,12 +14,12 @@
                         <Page showHeader="false" id="idLoginPanel">
                             <Panel headerText="Login to your Account">
                                 <Label text="E-Mail Address" labelFor="idLoginEmailInput"/>
-                                <Input id="idLoginEmailInput" type="Email" placeholder="Enter E-Mail Address ..."  value="{usermodel>/email}" liveChange="onInputLiveChangeEmail"/>
+                                <Input required="true" id="idLoginEmailInput" type="Email" placeholder="Enter E-Mail Address ..."  value="{usermodel>/email}" liveChange="onInputLiveChangeEmail"/>
 
 
 
                                 <Label text="Password" labelFor="idLoginPasswordInput"/>
-                                <Input id="idLoginPasswordInput" type="Password" placeholder="Enter Password ..." value="{usermodel>/password}" liveChange="onInputLiveChangePassword"/>
+                                <Input required="true" id="idLoginPasswordInput" type="Password" placeholder="Enter Password ..." value="{usermodel>/password}" liveChange="onInputLiveChangePassword"/>
 
                                 <HBox class="submitButtonContainer">
                                     <Button text="Login" type="Emphasized" press="onLoginButtonPress"/>
@@ -32,10 +32,10 @@
                             <Panel headerText="Create a new Account">
 
                                 <Label text="E-Mail Address" labelFor="idRegisterEmailInput"/>
-                                <Input id="idRegisterEmailInput" type="Email" placeholder="Enter E-Mail Address ..."  value="{usermodel>/email}" liveChange="onInputLiveChangeEmail"/>
+                                <Input required="true" id="idRegisterEmailInput" type="Email" placeholder="Enter E-Mail Address ..."  value="{usermodel>/email}" liveChange="onInputLiveChangeEmail"/>
 
                                 <Label text="Password" labelFor="idRegisterPasswordInput"/>
-                                <Input id="idRegisterPasswordInput" type="Password" placeholder="Enter Password ..." value="{usermodel>/password}" liveChange="onInputLiveChangePassword"/>
+                                <Input required="true" id="idRegisterPasswordInput" type="Password" placeholder="Enter Password ..." value="{usermodel>/password}" liveChange="onInputLiveChangePassword"/>
 
                                 <HBox class="submitButtonContainer">
                                     <Button text="Register" type="Emphasized" press="onRegistrationButtonPress"/>

@@ -39,7 +39,7 @@
                 },
                 {
                     "name": "overview",
-                    "pattern": "overview",
+                    "pattern": "overview/:?tableId:",
                     "target": "overview"
                 }
             ],

@@ -58,8 +58,12 @@ sap.ui.define([
     // Navigation
     // -------------------------------------
 
-    ComponentProto.toOverview = function() {
-        this.getRouter().navTo("overview");
+    ComponentProto.toOverview = function(sTableId) {
+        this.getRouter().navTo("overview", {
+            query: {
+                "tableId": sTableId
+            }
+        });
     };
     ComponentProto.toLogin = function () {
         this.getRouter().navTo("login");

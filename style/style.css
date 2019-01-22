@@ -30,8 +30,9 @@
   margin-top: 0.25rem;
   width: 100%;
 }
-.glossary-overview .sapMPanelContent {
-  height: unset !important;
+.glossary-overview .sapMPanelContent:first-child {
+  display: flex;
+  flex-direction: column;
 }
 .glossary-overview .glossary-header {
   background-color: #0060c0 !important;
@@ -50,20 +51,26 @@
   font-weight: bold;
   font-size: 1rem;
 }
-.glossary-overview .glossary-overviewList {
-  height: 100%;
-}
-.glossary-overview .glossary-overviewList .sapMTB {
+.glossary-overview .glossary-listHeader {
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: 3rem !important;
+  padding: 0.5rem 0 !important;
   padding-left: 0rem !important;
 }
-.glossary-overview .glossary-overviewList .sapMTB .sapMComboBox {
-  margin-left: 0px;
-}
-.glossary-overview .glossary-overviewList .sapMTB > .sapMBarChild:last-child {
-  margin-right: 0px;
-}
-.glossary-overview .glossary-overviewList .sapMBarChild.sapMSF.sapMTBShrinkItem {
+.glossary-overview .glossary-listHeader .sapMBarChild.sapMSF.sapMTBShrinkItem {
   max-width: 250px;
+}
+.glossary-overview .glossary-listHeader .sapMComboBox {
+  margin-left: 0px !important;
+}
+.glossary-overview .glossary-listHeader > .sapMBarChild:last-child {
+  margin-right: 0px !important;
+}
+.glossary-overview .glossary-overviewList {
+  flex-grow: 1;
+  flex-shrink: 1;
+  height: calc(100% - 3rem);
 }
 .glossary-overview .glossary-overviewList .sapMListUl {
   overflow: hidden auto;

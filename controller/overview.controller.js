@@ -44,21 +44,28 @@ sap.ui.define([
         this.onPageEnter(event);
     };
 
-    ControllerProto.onPageEnter = function() {
-        this.loadTables();
+    ControllerProto.onPageEnter = function(oEvent) {
+        var oArgs = oEvent.getParameter("arguments"),
+            sTableId = oArgs.tableId;
+
+        this.loadTables(sTableId);
     };
 
-    ControllerProto.loadTables = function() {
+    /**
+     * Loads the tables from the be, only the names/ids
+     * @param {string} sTableId - Optional table to open after loading is complete
+     */
+    ControllerProto.loadTables = function (sTableId) {
         this.m_oList.setBusy(true);
         this.getOwnerComponent().RestClient.getTables(
-            this.onLoadTablesSuccess.bind(this),
+            this.onLoadTablesSuccess.bind(this, sTableId),
             function() {
                 this.m_oPullToRefresh.hide.bind(this.m_oPullToRefresh);
                 this.m_oList.setBusy(false);
             }.bind(this)
         );
     };
-    ControllerProto.onLoadTablesSuccess = function(aData) {
+    ControllerProto.onLoadTablesSuccess = function (sTableId, aData) {
         var aTables = [];
 
         aData.map(function (table, index) {
@@ -71,10 +78,25 @@ sap.ui.define([
 
         //update combobox selection
         var aCBItems = this.m_oTableComboBox.getItems();
+
+        //check if a specific table should be opened
+        if (sTableId) {
+            for(var i in aCBItems) {
+                var oCurrentCbItem = aCBItems[i];
+
+                if (oCurrentCbItem.getKey() === sTableId) {
+                    this.m_oTableComboBox.setSelectedItem(oCurrentCbItem);
+                    break;
+                }
+            }
+        }
+
+        //select the first one by default, if none is selected
         if (aCBItems.length > 0 && !this.m_oTableComboBox.getSelectedItem()) {
             this.m_oTableComboBox.setSelectedItem(aCBItems[0]);
-        };
+        }
 
+        //load words for the selected table
         if (this.m_oTableComboBox.getSelectedItem()) {
             this.loadTableWords(this.m_oTableComboBox.getSelectedItem().getKey());
         }
@@ -114,6 +136,7 @@ sap.ui.define([
     ControllerProto.onTableSelectionChange = function(oEvent) {
         var sTableId = oEvent.getSource().getSelectedKey();
         this.loadTableWords(sTableId);
+        this.getOwnerComponent().toOverview(sTableId);
     };
 
     ControllerProto.onSearch = function(oEvent) {
@@ -219,10 +242,10 @@ sap.ui.define([
 
         for (var i in aItems) {
             var oItem = aItems[i];
-            if (aWords.indexOf(oItem.word) < 0 && oItem.word.trim()) {
+            if (oItem.word && aWords.indexOf(oItem.word) < 0 && oItem.word.trim()) {
                 aWords.push(oItem.word.trim());
             }
-            if (aSources.indexOf(oItem.source) < 0 && oItem.source.trim()) {
+            if (oItem.source && aSources.indexOf(oItem.source) < 0 && oItem.source.trim()) {
                 aSources.push(oItem.source.trim());
             }
         }
@@ -250,6 +273,13 @@ sap.ui.define([
         var oDate = new Date(otimestamp.seconds * 1000);
         return "last modified " + oDate.toLocaleString();
     };
+
+    ControllerProto.formatSource = function(sSource) {
+        if (!sSource) {
+            return "-";
+        }
+        return sSource;
+    }
 
     return Controller;
 });

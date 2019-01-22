@@ -49,8 +49,9 @@
 
 .glossary-overview {
 
-    .sapMPanelContent {
-        height: unset !important;
+    .sapMPanelContent:first-child {
+        display: flex;
+        flex-direction: column;
     }
 
 
@@ -74,24 +75,31 @@
         }
     }
 
-    .glossary-overviewList {
-        height: 100%;
+    .glossary-listHeader {
+        flex-grow: 0;
+        flex-shrink: 0;
 
-        .sapMTB {
-            padding-left: 0rem !important;
-
-            .sapMComboBox {
-                margin-left: 0px;
-            }
-
-            >.sapMBarChild:last-child {
-                margin-right: 0px;
-            }
-        }
+        height: 3rem !important;
+        padding: 0.5rem 0 !important;
+        padding-left: 0rem !important;
 
         .sapMBarChild.sapMSF.sapMTBShrinkItem {
             max-width: 250px;
         }
+
+        .sapMComboBox {
+            margin-left: 0px !important;
+        }
+
+        >.sapMBarChild:last-child {
+            margin-right: 0px !important;
+        }
+    }
+
+    .glossary-overviewList {
+        flex-grow: 1;
+        flex-shrink: 1;
+        height: calc(100% - 3rem);      //has to be adapted to fix overflow out of window glitch
 
         .sapMListUl {
             overflow: hidden auto;

@@ -24,10 +24,23 @@
 
             <content>
                 <PullToRefresh id="idPullToRefresh" refresh="refresh" visible="{= ${device>/system/phone}}"/>
-
+                
                 <Panel height="100%">
+                    <Toolbar class="glossary-listHeader">
+                        <ComboBox id="idTableComboBox" selectionChange="onTableSelectionChange" placeholder="Table"
+                            items="{
+                                path: '/tables',
+                                sorter: { path: 'text' }
+                            }">
+                            <core:ListItem key="{id}" text="{name}" additionalText = "{key}"/>
+                        </ComboBox>
+                        <ToolbarSpacer />
+                        <SearchField liveChange="onSearch"/>
+                        <Button type="Transparent" visible="{= !${device>/system/phone}}" press="refresh" icon="sap-icon://synchronize"/>
+                        <Button type="Transparent" visible="{= !${device>/system/phone}}" press="onAddWord" icon="sap-icon://add"/>
+                    </Toolbar>
                     <List id="idWordsList" 
-                        noDataText="No Entries found..."
+                        noDataText="No Entries found :("
                         growing="true" 
                         growingScrollToLoad="true" 
                         growingThreshold="50"
@@ -40,22 +53,6 @@
                             }
                         }" 
                         class="glossary-overviewList">
-
-                        <headerToolbar>
-                            <Toolbar>
-                                <ComboBox id="idTableComboBox" selectionChange="onTableSelectionChange" placeholder="Table"
-                                    items="{
-                                        path: '/tables',
-                                        sorter: { path: 'text' }
-                                    }">
-                                    <core:ListItem key="{id}" text="{name}" additionalText = "{key}"/>
-                                </ComboBox>
-                                <ToolbarSpacer />
-                                <SearchField liveChange="onSearch"/>
-                                <Button type="Transparent" visible="{= !${device>/system/phone}}" press="refresh" icon="sap-icon://synchronize"/>
-                                <Button type="Transparent" visible="{= !${device>/system/phone}}" press="onAddWord" icon="sap-icon://add"/>
-                            </Toolbar>
-                        </headerToolbar>
                     
                         <items>
                             <CustomListItem
@@ -67,7 +64,7 @@
                                             <Link text="{word}" tooltip="{word}" press="onEditWord" class="word"/>
                                             <core:Icon class="editIcon" src="sap-icon://delete" alt="{word}" press="onDeleteWord"/>
                                         </HBox>
-                                        <Label text="{source}" tooltip="{source}"/>
+                                        <Label text="{path: 'source', formatter: '.formatSource'}" tooltip="{source}"/>
                                         <Label class="lastModifiedDate" text="{
                                             path: 'lastModifiedAt',
 						                    formatter: '.formatFirebaseTimestamp'}" tooltip="{

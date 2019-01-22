@@ -55,10 +55,11 @@ sap.ui.define([
         oRequest.finally(fnFinally);
     };
 
-    Manager.register = function(email, password, fnError) {
-        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
-            fnError(error);
-        });
+    Manager.register = function (email, password, fnThen, fnError, fnFinally) {
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+        .catch(this.generateErrorHandler(fnError))
+        .then(fnThen)
+        .finally(fnFinally);
     };
 
     Manager.logout = function(fnError) {
