@@ -40,6 +40,8 @@ sap.ui.define([
         if (oSettings.word) {
             this.m_oWordModel.setProperty("/word", oSettings.word);
         }
+
+        this.m_oWordInput.setValueState("None");
     };
 
     ControllerProto.onCloseInDialog = function () {
@@ -49,9 +51,15 @@ sap.ui.define([
     ControllerProto.onSubmitButtonPress = function() {
         var oWord = this.m_oWordModel.getProperty("/word");
 
+        if (!oWord.word) {
+            this.m_oWordInput.setValueState("Error");
+            return false;
+        }
+
         this.getOwnerComponent().RestClient.addWord(oWord, function() {
             MessageToast.show("Successfully added \"" + oWord.word + "\"");
         });
+        return true;
     };
 
     // ------------------------------

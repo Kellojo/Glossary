@@ -20,6 +20,9 @@ sap.ui.define([
     ComponentProto.SHARED_DIALOGS = {
         "addWord":  {
             view: "com.glossary.view.dialog.addWord"
+        },
+        "addTable": {
+            view: "com.glossary.view.dialog.addTable"
         }
     };
 
@@ -73,6 +76,10 @@ sap.ui.define([
         this.openDialog("addWord", oSettings);
     };
 
+    ComponentProto.openAddTableDialog = function (oSettings) {
+        this.openDialog("addTable", oSettings);
+    };
+
 
     // -------------------------------------
     // Utility
@@ -113,16 +120,18 @@ sap.ui.define([
             type: "Emphasized",
             press: function() {
                 oSettings.fnOnSubmit(oDialog);
+                var bSubmitValid = true;
 
                 if (oController.onSubmitButtonPress) {
-                    oController.onSubmitButtonPress();
+                    bSubmitValid = oController.onSubmitButtonPress();
                 }
 
-                if (oController.onCloseInDialog) {
-                    oController.onCloseInDialog();
+                if (bSubmitValid) {
+                    if (oController.onCloseInDialog) {
+                        oController.onCloseInDialog();
+                    }
+                    oDialog.close();
                 }
-
-                oDialog.close();
             }
         });
         oDialog.setEndButton(oSubmitButton);

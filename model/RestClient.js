@@ -152,6 +152,36 @@ sap.ui.define([
         .catch(this.generateErrorHandler());
     };
 
+    /**
+     * Adds a table to the users tables
+     */
+    Manager.addTable = function (oTable, fnSuccess) {
+        var userId = this.m_oCurrentUser.uid;
+        if (userId && oTable && oTable.name) {
+
+            oTable.owner = oTable.owner || userId;
+            oTable.createdAt = oTable.createdAt || new Date();
+            if (oTable.id) {
+                firebase.firestore().collection("tables").doc(oTable.id).set(oTable)
+                    .then(fnSuccess)
+                    .catch(this.generateErrorHandler());
+            } else {
+                firebase.firestore().collection("tables").doc().set(oTable)
+                    .then(fnSuccess)
+                    .catch(this.generateErrorHandler());
+            }
+        }
+    };
+
+    /**
+     * Deletes the given table
+     */
+    Manager.deleteTable = function (oTable, fnSuccess) {
+        firebase.firestore().collection("tables").doc(oTable.id).delete()
+            .then(fnSuccess)
+            .catch(this.generateErrorHandler());
+    };
+
 
     return Manager;
 });

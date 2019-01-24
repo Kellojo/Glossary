@@ -21,6 +21,7 @@ sap.ui.define([
         this.m_oListModel = new JSONModel({
             currentTable: {
                 id: null,
+                name: "",
                 items: []
             },
             tables: [],
@@ -104,6 +105,7 @@ sap.ui.define([
 
     ControllerProto.loadTableWords = function(sTableId) {
         if (sTableId) {
+            this.m_oList.setBusy(true);
             this.getView().getModel().setProperty("/currentTable/id", sTableId);
             this.getOwnerComponent().RestClient.getWordsForTable(sTableId, this.onLoadTableContendsSuccess.bind(this));
         }
@@ -118,6 +120,7 @@ sap.ui.define([
         });
 
         this.getView().getModel().setProperty("/currentTable/items", aEntries);
+        this.m_oList.setBusy(false);
     };
 
 
@@ -134,9 +137,10 @@ sap.ui.define([
     };
 
     ControllerProto.onTableSelectionChange = function(oEvent) {
-        var sTableId = oEvent.getSource().getSelectedKey();
-        this.loadTableWords(sTableId);
-        this.getOwnerComponent().toOverview(sTableId);
+        var oTable = oEvent.getParameter("selectedItem").getBinding("text").getContext().getObject();
+        this.m_oListModel.setProperty("/currentTable", oTable);
+        this.loadTableWords(oTable.id);
+        this.getOwnerComponent().toOverview(oTable.id);
     };
 
     ControllerProto.onSearch = function(oEvent) {
@@ -217,6 +221,42 @@ sap.ui.define([
         this.editWord(oWord);
     };
 
+    ControllerProto.onAddTable = function(oEvent) {
+        this.getOwnerComponent().openAddTableDialog({
+            title: "Create new Table",
+            fnOnSubmit: this.onTableAdded.bind(this),
+            table: {}
+        });
+    };
+
+    ControllerProto.onTableAdded = function(oEvent) {
+        this.loadTables();
+    };
+
+    ControllerProto.onDeleteTable = function(oEvent) {
+        var oTable = this.m_oListModel.getProperty("/currentTable");
+
+        if (oTable) {
+            MessageBox.warning(
+                "Are you sure you want to delete \"" + oTable.name + "\"? \nThis is going to delete the table permanently. It can not be restored.",
+                {
+                    actions: [sap.m.MessageBox.Action.OK, sap.m.MessageBox.Action.CANCEL],
+                    styleClass: "sapUiSizeCompact",
+                    onClose: function (sAction) {
+                        if (sAction === sap.m.MessageBox.Action.OK) {
+                            this.getOwnerComponent().RestClient.deleteTable(oTable, this.onTableDeleted.bind(this, oTable));
+                        }
+                    }.bind(this)
+                }
+            );
+        }
+    };
+
+    ControllerProto.onTableDeleted = function(oTable) {
+        MessageToast.show("Successfully deleted \"" + oTable.name + "\"");
+        this.refresh();
+    };
+
     // --------------------------------
     // Utility
     // --------------------------------
@@ -279,7 +319,7 @@ sap.ui.define([
             return "-";
         }
         return sSource;
-    }
+    };
 
     return Controller;
 });

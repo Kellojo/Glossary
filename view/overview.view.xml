@@ -32,12 +32,14 @@
                                 path: '/tables',
                                 sorter: { path: 'text' }
                             }">
-                            <core:ListItem key="{id}" text="{name}" additionalText = "{key}"/>
+                            <core:ListItem key="{id}" text="{name}" tooltip="{name}" additionalText="{key}"/>
                         </ComboBox>
+                        <Button type="Transparent" visible="{= !${device>/system/phone}}" press="onAddTable" tooltip="Create Table" icon="sap-icon://add"/>
+                        <Button type="Transparent" visible="{= !${device>/system/phone} &amp;&amp; ( ${/currentTable/id} !== '' )}" press="onDeleteTable" tooltip="Delete Table" icon="sap-icon://delete"/>
                         <ToolbarSpacer />
                         <SearchField liveChange="onSearch"/>
-                        <Button type="Transparent" visible="{= !${device>/system/phone}}" press="refresh" icon="sap-icon://synchronize"/>
-                        <Button type="Transparent" visible="{= !${device>/system/phone}}" press="onAddWord" icon="sap-icon://add"/>
+                        <Button type="Transparent" visible="{= !${device>/system/phone}}" press="refresh" tooltip="Refresh" icon="sap-icon://synchronize"/>
+                        <Button type="Transparent" visible="{= !${device>/system/phone}}" press="onAddWord" tooltip="Add Word" icon="sap-icon://add"/>
                     </Toolbar>
                     <List id="idWordsList" 
                         noDataText="No Entries found :("
@@ -62,7 +64,7 @@
                                     <VBox class="heading">
                                         <HBox class="wordContainer">
                                             <Link text="{word}" tooltip="{word}" press="onEditWord" class="word"/>
-                                            <core:Icon class="editIcon" src="sap-icon://delete" alt="{word}" press="onDeleteWord"/>
+                                            <core:Icon class="editIcon" src="sap-icon://delete" tooltip="Delete Word" alt="{word}" press="onDeleteWord"/>
                                         </HBox>
                                         <Label text="{path: 'source', formatter: '.formatSource'}" tooltip="{source}"/>
                                         <Label class="lastModifiedDate" text="{
