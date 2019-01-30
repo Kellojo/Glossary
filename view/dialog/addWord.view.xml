@@ -10,7 +10,7 @@
 
         <Label text="Word" labelFor="idWordInput"/>
         <Input id="idWordInput" placeholder="Enter Word ..." value="{/word/word}" 
-            showSuggestion="true"
+            showSuggestion="false"
             suggest="onHandleSuggest"
             suggestionItems="{/words}">
             <suggestionItems>

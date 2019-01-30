@@ -51,7 +51,7 @@ sap.ui.define([
         var oRequest = firebase.auth().signInWithEmailAndPassword(email, password);
         
         oRequest.then(fnThen);
-        oRequest.catch(fnError);
+        oRequest.catch(this.generateErrorHandler(fnError));
         oRequest.finally(fnFinally);
     };
 
@@ -69,6 +69,16 @@ sap.ui.define([
             }
         });
     };
+
+    Manager.sendPasswordResetEmail = function(mParameters) {
+        firebase.auth().sendPasswordResetEmail(mParameters.email).then(function () {
+            if (typeof mParameters.fnSuccess === "function") {
+                mParameters.fnSuccess();
+            }
+        }).catch(this.generateErrorHandler(mParameters.fnError));
+    };
+
+
 
 
     /**
@@ -103,22 +113,23 @@ sap.ui.define([
     /**
      * Queries all words including the sources for a given table
      */
-    Manager.getWordsForTable = function (tableId, fnSuccess) {
+    Manager.getWordsForTable = function (params) {
         var collection = firebase.firestore().collection("words");
 
         //where clause to filter only by the given table id
-        collection.where("table", "==", tableId).get().then(
+        collection.where("table", "==", params.tableId).get().then(
             function (doc) {
                 //if doc exists, run the success function
                 if (doc) {
 
-                    console.log("Found " + doc.docs.length + " words for table '" + tableId + "'");
+                    console.log("Found " + doc.docs.length + " words for table '" + params.tableId + "'");
 
-                    if (typeof fnSuccess == "function") {
-                        fnSuccess(doc.docs);
+                    if (typeof params.fnSuccess == "function") {
+                        params.fnSuccess(doc.docs);
                     }
                 }
-            }).catch(this.generateErrorHandler());
+            }).catch(this.generateErrorHandler())
+            .finally(params.fnFinally);
     };
 
     /**

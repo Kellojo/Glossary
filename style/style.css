@@ -1,6 +1,15 @@
 .sapMListNoDataText {
   color: #666;
 }
+.sapMLabelRequired:before {
+  margin-right: 0.1rem;
+}
+.sapMInputBaseContentWrapperSuccess {
+  border-color: #8cc905 !important;
+}
+.sapMInputBaseContentWrapperError {
+  border-color: #ee3100 !important;
+}
 .glossary-centeredPanel {
   display: flex;
   align-items: center;
@@ -8,17 +17,28 @@
   width: 100%;
   height: 100%;
 }
+.glossary-centeredPanel .sapMPanelContent {
+  padding: 0.625rem 1rem 0.5rem 1rem;
+}
 .glossary-centeredPanel .sapMNav {
   min-width: 15% !important;
   max-width: 400px;
   height: 350px !important;
 }
+.glossary-centeredPanel .sapMNav .passwordLabel {
+  margin-top: 0.35rem;
+}
+.glossary-centeredPanel .sapMNav .forgotPasswordLink {
+  margin-top: 0.25rem;
+  color: #aeaeae;
+}
 .glossary-centeredPanel .sapMNav .submitButtonContainer {
   align-items: center;
   display: flex;
+  margin-top: 0.25rem;
 }
-.glossary-centeredPanel .sapMNav .submitButtonContainer .sapMLnk {
-  margin-left: 1rem;
+.glossary-centeredPanel .sapMNav .submitButtonContainer .sapMFlexItem:last-child {
+  margin-left: auto;
 }
 .glossary-errorMessageContainer {
   position: absolute;
@@ -50,6 +70,14 @@
 .glossary-overview .glossary-header .glossary-appTitle {
   font-weight: bold;
   font-size: 1rem;
+}
+.glossary-overview .glossary-header .glossary-header-user .sapMLnk {
+  vertical-align: middle;
+  margin: 0px !important;
+  color: white;
+}
+.glossary-overview .glossary-header .glossary-header-user .sapMLnk:hover {
+  color: white;
 }
 .glossary-overview .glossary-listHeader {
   flex-grow: 0;
@@ -109,4 +137,18 @@
 }
 .glossary-dialog .sapMDialogSection {
   height: 100% !important;
+}
+.sap-phone .glossary-dialog {
+  height: 100% !important;
+  width: 100% !important;
+  max-height: calc(100% - 5rem) !important;
+  max-width: 100% !important;
+  border-radius: 0px;
+}
+.glossary-userDialog .glossary-userInfo {
+  border-bottom: 1px solid #aeaeae;
+  margin-bottom: 1rem;
+}
+.glossary-userDialog .glossary-userInfo .sapMLabel {
+  font-size: 0.7rem;
 }

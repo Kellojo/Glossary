@@ -107,7 +107,11 @@ sap.ui.define([
         if (sTableId) {
             this.m_oList.setBusy(true);
             this.getView().getModel().setProperty("/currentTable/id", sTableId);
-            this.getOwnerComponent().RestClient.getWordsForTable(sTableId, this.onLoadTableContendsSuccess.bind(this));
+            this.getOwnerComponent().RestClient.getWordsForTable({
+                tableId: sTableId,
+                fnSuccess: this.onLoadTableContendsSuccess.bind(this),
+                fnFinally: this.m_oPullToRefresh.hide.bind(this.m_oPullToRefresh)
+            });
         }
     };
     ControllerProto.onLoadTableContendsSuccess = function(aData) {
@@ -257,6 +261,10 @@ sap.ui.define([
         this.refresh();
     };
 
+    ControllerProto.onUserLinkPress = function (oEvent) {
+        this.getOwnerComponent().openUserDialog({});
+    };
+
     // --------------------------------
     // Utility
     // --------------------------------
@@ -299,7 +307,7 @@ sap.ui.define([
     ControllerProto.formatWelcomeMessage = function(sUsername) {
         var oUserModel = this.getOwnerComponent().getModel("userModel"),
             sUsername = oUserModel.getProperty("/user/email");
-        return "Welcome " + sUsername + "!";
+        return sUsername;
     };
 
     ControllerProto.formatFirebaseTimestamp = function(otimestamp) {
@@ -311,7 +319,7 @@ sap.ui.define([
 
     ControllerProto.formatFirebaseTimestampLong = function (otimestamp) {
         var oDate = new Date(otimestamp.seconds * 1000);
-        return "last modified " + oDate.toLocaleString();
+        return "Last modified " + oDate.toLocaleString();
     };
 
     ControllerProto.formatSource = function(sSource) {

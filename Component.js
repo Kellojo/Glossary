@@ -23,6 +23,9 @@ sap.ui.define([
         },
         "addTable": {
             view: "com.glossary.view.dialog.addTable"
+        },
+        "userDialog": {
+            view: "com.glossary.view.dialog.userDialog"
         }
     };
 
@@ -73,11 +76,24 @@ sap.ui.define([
     };
 
     ComponentProto.openAddWordDialog = function (oSettings) {
+        oSettings = jQuery.extend(oSettings, {
+            submitButton: true
+        });
         this.openDialog("addWord", oSettings);
     };
 
     ComponentProto.openAddTableDialog = function (oSettings) {
+        oSettings = jQuery.extend(oSettings, {
+            submitButton: true
+        });
         this.openDialog("addTable", oSettings);
+    };
+
+    ComponentProto.openUserDialog = function (oSettings) {
+        oSettings = jQuery.extend(oSettings, {
+            title: "User Management"
+        });
+        this.openDialog("userDialog", oSettings);
     };
 
 
@@ -115,26 +131,29 @@ sap.ui.define([
         });
         oDialog.setBeginButton(oCloseButton);
 
-        var oSubmitButton = new sap.m.Button({
-            text: oSettings.submitText || "Submit",
-            type: "Emphasized",
-            press: function() {
-                oSettings.fnOnSubmit(oDialog);
-                var bSubmitValid = true;
+        //Submit Button
+        if (oSettings.submitButton) {
+            var oSubmitButton = new sap.m.Button({
+                text: oSettings.submitText || "Submit",
+                type: "Emphasized",
+                press: function() {
+                    oSettings.fnOnSubmit(oDialog);
+                    var bSubmitValid = true;
 
-                if (oController.onSubmitButtonPress) {
-                    bSubmitValid = oController.onSubmitButtonPress();
-                }
-
-                if (bSubmitValid) {
-                    if (oController.onCloseInDialog) {
-                        oController.onCloseInDialog();
+                    if (oController.onSubmitButtonPress) {
+                        bSubmitValid = oController.onSubmitButtonPress();
                     }
-                    oDialog.close();
+
+                    if (bSubmitValid) {
+                        if (oController.onCloseInDialog) {
+                            oController.onCloseInDialog();
+                        }
+                        oDialog.close();
+                    }
                 }
-            }
-        });
-        oDialog.setEndButton(oSubmitButton);
+            });
+            oDialog.setEndButton(oSubmitButton);
+        }
 
         oDialog.addContent(this.m_oDialogs[sDialog].view);
         oDialog.open();

@@ -1,0 +1,40 @@
+<mvc:View
+    controllerName="com.glossary.controller.dialog.userDialog"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+
+    <Panel class="glossary-userDialog">
+
+            <VBox class="glossary-userInfo">
+                <HBox>
+                    <Text text="{userModel>/user/email}" />
+                    <Text text="{
+                        path: 'userModel>/user',
+                        formatter: '.formatEmailVerified'
+                    }"  renderWhitespace="true"/>
+                </HBox>
+
+                <Label text="{
+                    path: 'userModel>/user/metadata/creationTime',
+                    formatter: '.formatCreationTimeStamp'
+                }"/>
+                <Label text="{
+                    path: 'userModel>/user/metadata/lastSignInTime',
+                    formatter: '.formatLastSignInTimeStamp'
+                }"/>
+            </VBox>
+
+            <VBox>
+                <Button text="Change Email" />
+                <Button text="Verify Email" />
+
+                <Button text="Change Password" />
+            </VBox>
+
+
+    </Panel>
+
+</mvc:View>
