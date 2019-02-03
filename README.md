@@ -10,7 +10,7 @@ Glossary is what is says a glossary, saving words, their explanation and the sou
 - Words can be deleted from lists
 - Words can be modified
 - Search across table
-- 
+- Responsive, optimized for mobile devices
 
 
 ## How can this be setup?
@@ -59,3 +59,8 @@ Glossary is what is says a glossary, saving words, their explanation and the sou
 
 ### Editing a Word
 ![Editing a Word](https://i.imgur.com/uLSoIv0.png)
+
+### Mobile Version
+![Login](https://i.imgur.com/Q5sZ2PH.png)
+![Overview](https://i.imgur.com/IRgu1B2.png)
+![Editing a Word](https://i.imgur.com/BRGcqhk.png)
