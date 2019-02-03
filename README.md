@@ -29,22 +29,25 @@ Glossary is what is says a glossary, saving words, their explanation and the sou
 ## How does it look like?
 
 ### Login
-![Login](https://imgur.com/dhtLeJ4)
+![Login](https://i.imgur.com/VfOCfJI.png)
 
 ### Overview
-![Logged in user](https://imgur.com/zxRVkWw)
+![Overview](https://i.imgur.com/v1ScduK.png)
 
 ### Registration
-![Registration](https://i.imgur.com/QrZjEEy.png)
+![Registration](https://i.imgur.com/SpvAGR5.png)
+
+### Password Reset
+![Registration](https://i.imgur.com/WgP1nze.png)
 
 ### Adding a Word
-![Adding a word](https://imgur.com/9hPBfBa)
+![Adding a word](https://i.imgur.com/1W4xzds.png)
 
-### Adding a Table
-![Adding a table](https://i.imgur.com/dKbECNj.png)
+### Creating a List
+![Adding a table](https://i.imgur.com/OEgN9Jv.png)
 
 ### Deleting a Word
-![Deleting a word](https://imgur.com/9hPBfBa)
+![Deleting a word](https://i.imgur.com/UXaSfNg.png)
 
 ### Editing a Word
-![Editing a Word](https://imgur.com/wUG2ABd)
+![Editing a Word](https://i.imgur.com/uLSoIv0.png)
