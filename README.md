@@ -4,20 +4,21 @@ Glossary is what is says a glossary, saving words, their explanation and the sou
 
 
 ## Features
-- Usersystem with login, logout, registration
+- Usersystem with login, logout, registration, forgot password
 - Users can create their own set of lists
 - Words can be added to lists
 - Words can be deleted from lists
+- Words can be modified
+- Search across table
+- 
 
-## Planned Features
-- Delete lists
-- Search functionality
 
 ## How can this be setup?
 - Create a firebae project
 - Configure the firebase settings according to your project in the "/Component.js" file
 - In your firebase project choose the Cloud Firestore and setup the following rules for it:
- 
+
+```
  service cloud.firestore {
   match /databases/{database}/documents {
     match /tables/{tableId} {
@@ -31,6 +32,7 @@ Glossary is what is says a glossary, saving words, their explanation and the sou
     }
   }
 } 
+```
 
 ## How does it look like?
 
