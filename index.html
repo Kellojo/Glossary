@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Glossary</title>
+		<meta charset="UTF-8">
+		<meta name="description" content="Glossary is what is says a glossary, saving words, their explanation and the source of that explanation in tables using a MySQL Database and a webserver capable of running php. Link to the GitHub repo: https://github.com/Kellojo/Glossary">
+		<meta name="keywords" content="Glossary">
+		<meta name="author" content="Kellojo (https://github.com/Kellojo)">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        
+        <!-- iOS Home Screen Settings -->
+        <meta name="apple-mobile-web-app-title" content="Glossary">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="transparent">
+        <link rel="apple-touch-icon" href="/img/Glossary_home_74x74.png">
+
+        <!-- Firebase Script -->
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+
+        <!-- Open UI5 Bootstrap -->
+        <script 
+            src="https://openui5.hana.ondemand.com/1.60.1/resources/sap-ui-core.js" 
+            id="sap-ui-bootstrap" 
+            data-sap-ui-theme="sap_belize"
+            data-sap-ui-libs="sap.m"
+            data-sap-ui-compatVersion="edge"
+            data-sap-ui-preload="async"
+            data-sap-ui-async="true"
+            data-sap-ui-resourceroots='{
+                "com.glossary": "./",
+                "glossary.m": "./lib/glossary/m"
+            }' >
+        </script>
+        <script type="text/javascript">
+            sap.ui.getCore().attachInit(function () {
+                new sap.ui.core.ComponentContainer({
+                    name: "com.glossary",
+                    manifest: true,
+                    height: "100%"
+                }).placeAt("content");
+            });
+        </script>
+
+        <link rel="stylesheet" type="text/css" href="style/style.css">
+    </head>
+    
+    <body class="sapUiBody sapUiSizeCompact" id="content"></body>
+</html>

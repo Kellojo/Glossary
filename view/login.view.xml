@@ -1,0 +1,67 @@
+<mvc:View
+	controllerName="com.glossary.controller.login"
+	xmlns="sap.m"
+    xmlns:u="sap.ui.unified"
+	xmlns:mvc="sap.ui.core.mvc"
+    xmlns:html="http://www.w3.org/1999/xhtml">
+
+        <Page showHeader="false">
+            
+            <content>
+                <html:div class="glossary-centeredPanel">
+                    <NavContainer id="idNavContainer" initialPage="idLoginPanel">
+
+                        <Page showHeader="false" id="idLoginPanel">
+                            <Panel headerText="Login To Your Account">
+                                <Label text="E-Mail Address" labelFor="idLoginEmailInput"/>
+                                <Input required="true" id="idLoginEmailInput" type="Email" placeholder="Enter E-Mail Address ..."  value="{usermodel>/email}" liveChange="onInputLiveChangeEmail"/>
+
+
+
+                                <Label text="Password" labelFor="idLoginPasswordInput" class="passwordLabel"/>
+                                <Input required="true" id="idLoginPasswordInput" type="Password" placeholder="Enter Password ..." value="{usermodel>/password}" liveChange="onInputLiveChangePassword"/>
+                                
+                                <Link text="Forgot Password?" class="forgotPasswordLink" press="onToForgotPasswordButtonPress"/>
+
+                                <HBox class="submitButtonContainer">
+                                    <Link text="Create New Account" press="onToRegistrationPress"/>
+                                    <Button text="Login" type="Emphasized" press="onLoginButtonPress"/>
+                                </HBox>
+                            </Panel>
+                        </Page>
+
+                        <Page showHeader="false" id="idRegistrationPanel">
+                            <Panel headerText="Create A New Account">
+
+                                <Label text="E-Mail Address" labelFor="idRegisterEmailInput"/>
+                                <Input required="true" id="idRegisterEmailInput" type="Email" placeholder="Enter E-Mail Address ..."  value="{usermodel>/email}" liveChange="onInputLiveChangeEmail"/>
+
+                                <Label text="Password" labelFor="idRegisterPasswordInput" class="passwordLabel"/>
+                                <Input required="true" id="idRegisterPasswordInput" type="Password" placeholder="Enter Password ..." value="{usermodel>/password}" liveChange="onInputLiveChangePassword"/>
+
+                                <HBox class="submitButtonContainer">
+                                    <Link text="Already Have An Account?" press="onToLoginPress"/>
+                                    <Button text="Register" type="Emphasized" press="onRegistrationButtonPress"/>
+                                </HBox>
+                            </Panel>
+                        </Page>
+
+                        <Page showHeader="false" id="idResetPassword">
+                            <Panel headerText="Reset Your Password">
+
+                                <Label text="Your E-Mail Address" labelFor="idRegisterEmailInput"/>
+                                <Input required="true" id="idResetEmailInput" type="Email" placeholder="Enter Your E-Mail Address ..."  value="{usermodel>/email}" liveChange="onInputLiveChangeEmail"/>
+
+                                <HBox class="submitButtonContainer">
+                                    <Link text="Already have an Account?" press="onToLoginPress"/>
+                                    <Button text="Send Password Email" type="Emphasized" press="onResetEmailButtonPress"/>
+                                </HBox>
+                            </Panel>
+                        </Page>
+
+                    </NavContainer>
+                </html:div>
+            </content>
+        </Page>
+
+</mvc:View>
