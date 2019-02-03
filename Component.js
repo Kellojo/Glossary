@@ -35,12 +35,12 @@ sap.ui.define([
 
         //init firebase
         firebase.initializeApp({
-            apiKey: "AIzaSyCl49KQFEgcZl6aKr77PUwzxmqRsz-INuY",
-            authDomain: "glossary-daeb8.firebaseapp.com",
-            databaseURL: "https://glossary-daeb8.firebaseio.com",
-            projectId: "glossary-daeb8",
-            storageBucket: "glossary-daeb8.appspot.com",
-            messagingSenderId: "101359376375"
+            apiKey: "",
+            authDomain: "",
+            databaseURL: "",
+            projectId: "",
+            storageBucket: "",
+            messagingSenderId: ""
         });
 
         //init rest client
