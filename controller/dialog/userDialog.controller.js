@@ -38,7 +38,7 @@ sap.ui.define([
     // --------------------------------
 
     ControllerProto.formatEmailVerified = function(oUser) {
-        if (oUser.emailVerified) {
+        if (oUser && oUser.emailVerified) {
             return " (verified)";
         } else {
             return " (not verified)";
