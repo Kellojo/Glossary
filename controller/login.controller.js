@@ -21,6 +21,8 @@ sap.ui.define([
 
     ControllerProto.MIN_PASSWORD_LENGTH = 6;
 
+    ControllerProto.name = "login";
+
 
     ControllerProto.onInit = function () {
         this.m_oUserModel = new JSONModel({
@@ -36,14 +38,31 @@ sap.ui.define([
         this.m_oRegistrationEmailInput = this.getView().byId(this.ID_REGISTRATION_EMAIL_INPUT);
         this.m_oRegistrationPasswordInput = this.getView().byId(this.ID_REGISTRATION_PASSWORD_INPUT);
         this.m_oResetEmailEmailInput = this.getView().byId(this.ID_RESET_EMAIL_EMAIL_INPUT);
-    }
+
+
+        this._oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+        this._oRouter.attachRouteMatched(this.handleRouteMatched, this);
+    };
+
+    ControllerProto.handleRouteMatched = function (event) {
+        //Check whether this page is matched.
+        if (event.getParameter("name") !== this.name) {
+            return;
+        }
+
+        this.onPageEnter(event);
+    };
+
+    ControllerProto.onPageEnter = function (oEvent) {
+        this.getOwnerComponent().setHeaderVisible(false);
+    };
 
 
     // ------------------------------
     // Event Handler
     // ------------------------------
 
-    ControllerProto.onToRegistrationPress = function() {
+    ControllerProto.onToRegistrationPress = function () {
         this.m_oNavContainer.to(this.getView().byId(this.ID_REGISTRATION_PANEL));
         this.m_oUserModel.setProperty("/password", "");
     };
@@ -85,7 +104,7 @@ sap.ui.define([
     };
 
 
-    ControllerProto.onLoginButtonPress = function() {
+    ControllerProto.onLoginButtonPress = function () {
         var sEmail = this.m_oUserModel.getProperty("/email") || this.m_oLoginEmailInput.getValue(),
             sPassword = this.m_oUserModel.getProperty("/password") || this.m_oLoginPasswordInput.getValue();
 
@@ -115,9 +134,9 @@ sap.ui.define([
                 this.onLoginOrRegistrationComplete.bind(this)
             );
         }
-    }; 
+    };
 
-    ControllerProto.onResetEmailButtonPress = function() {
+    ControllerProto.onResetEmailButtonPress = function () {
         var sEmail = this.m_oResetEmailEmailInput.getValue();
         if (this.isEmailValid(sEmail).result) {
             this.m_oResetEmailEmailInput.setValueState("None");
@@ -125,7 +144,7 @@ sap.ui.define([
 
             //send password reset email
             this.getOwnerComponent().RestClient.sendPasswordResetEmail({
-                fnSuccess: this.onSendResetEmailSuccess.bind(this, sEmail),
+                success: this.onSendResetEmailSuccess.bind(this, sEmail),
                 email: sEmail
             });
 
@@ -135,20 +154,20 @@ sap.ui.define([
         }
     };
 
-    ControllerProto.onSendResetEmailSuccess = function(sEmail) {
+    ControllerProto.onSendResetEmailSuccess = function (sEmail) {
         MessageToast.show("An email has been sent to \"" + sEmail + "\"");
         this.m_oNavContainer.backToTop();
     };
 
-    ControllerProto.onLoginSuccess = function(oData) {
+    ControllerProto.onLoginSuccess = function (oData) {
         MessageToast.show("Login Successfull, welcome " + oData.user.email);
     };
 
-    ControllerProto.onLoginError = function(error) {
-        
+    ControllerProto.onLoginError = function (error) {
+
     };
 
-    ControllerProto.onLoginOrRegistrationComplete = function() {
+    ControllerProto.onLoginOrRegistrationComplete = function () {
         this.m_oNavContainer.setBusy(false);
     };
 
@@ -165,7 +184,7 @@ sap.ui.define([
         };
     };
 
-    ControllerProto.isValidPassword = function(password) {
+    ControllerProto.isValidPassword = function (password) {
         return {
             result: password.trim().length >= this.MIN_PASSWORD_LENGTH,
             text: "The pass word has to be at least " + this.MIN_PASSWORD_LENGTH + " characters long"

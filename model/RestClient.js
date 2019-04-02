@@ -5,7 +5,7 @@ sap.ui.define([
 
     var Manager = {};
 
-    Manager.init = function(Component) {
+    Manager.init = function (Component) {
         this.Component = Component;
 
         //init firestore
@@ -24,8 +24,8 @@ sap.ui.define([
     };
 
 
-    Manager.generateErrorHandler = function(fnCustomError) {
-        return function(error) {
+    Manager.generateErrorHandler = function (fnCustomError) {
+        return function (error) {
             this.Component.showErrorMessage(error.message);
 
             if (fnCustomError) {
@@ -35,47 +35,47 @@ sap.ui.define([
     };
 
 
-    Manager.onAuthStateChanged = function(oUser) {
+    Manager.onAuthStateChanged = function (oUser) {
         this.m_oUserModel.setProperty("/user", oUser);
         this.m_oUserModel.refresh(true);
         this.m_oCurrentUser = oUser;
 
         if (oUser) {
-            this.Component.toOverview();
+            this.Component.toTable();
         } else {
             this.Component.toLogin();
         }
     };
 
-    Manager.login = function login(email, password, fnThen, fnError, fnFinally) {
+    Manager.login = function login(email, password, fnThen, error, complete) {
         var oRequest = firebase.auth().signInWithEmailAndPassword(email, password);
-        
+
         oRequest.then(fnThen);
-        oRequest.catch(this.generateErrorHandler(fnError));
-        oRequest.finally(fnFinally);
+        oRequest.catch(this.generateErrorHandler(error));
+        oRequest.finally(complete);
     };
 
-    Manager.register = function (email, password, fnThen, fnError, fnFinally) {
+    Manager.register = function (email, password, fnThen, error, complete) {
         firebase.auth().createUserWithEmailAndPassword(email, password)
-        .catch(this.generateErrorHandler(fnError))
-        .then(fnThen)
-        .finally(fnFinally);
+            .catch(this.generateErrorHandler(error))
+            .then(fnThen)
+            .finally(complete);
     };
 
-    Manager.logout = function(fnError) {
+    Manager.logout = function (error) {
         firebase.auth().signOut().catch(function (error) {
-            if (fnError) {
-                fnError(error);
+            if (error) {
+                error(error);
             }
         });
     };
 
-    Manager.sendPasswordResetEmail = function(mParameters) {
+    Manager.sendPasswordResetEmail = function (mParameters) {
         firebase.auth().sendPasswordResetEmail(mParameters.email).then(function () {
-            if (typeof mParameters.fnSuccess === "function") {
-                mParameters.fnSuccess();
+            if (typeof mParameters.success === "function") {
+                mParameters.success();
             }
-        }).catch(this.generateErrorHandler(mParameters.fnError));
+        }).catch(this.generateErrorHandler(mParameters.error));
     };
 
 
@@ -84,9 +84,9 @@ sap.ui.define([
     /**
      *  Get all tables of a given user
      */
-    Manager.getTables = function (fnSuccess, fnFinally) {
+    Manager.getTables = function (success, complete) {
         if (!this.m_oCurrentUser) {
-            setTimeout(this.getTables.bind(this, fnSuccess, fnFinally), 500);
+            setTimeout(this.getTables.bind(this, success, complete), 500);
             return;
         }
 
@@ -101,13 +101,13 @@ sap.ui.define([
                 if (doc) {
                     console.log("Found " + doc.docs.length + " table(s)");
 
-                    if (typeof fnSuccess == "function") {
-                        fnSuccess(doc.docs);
+                    if (typeof success == "function") {
+                        success(doc.docs);
                     }
                 }
             })
             .catch(this.generateErrorHandler())
-            .finally(fnFinally);
+            .finally(complete);
     };
 
     /**
@@ -124,32 +124,81 @@ sap.ui.define([
 
                     console.log("Found " + doc.docs.length + " words for table '" + params.tableId + "'");
 
-                    if (typeof params.fnSuccess == "function") {
-                        params.fnSuccess(doc.docs);
+                    if (typeof params.success == "function") {
+                        params.success(doc.docs);
                     }
                 }
             }).catch(this.generateErrorHandler())
-            .finally(params.fnFinally);
+            .finally(params.complete);
+    };
+
+    /**
+     * Queries all sources for a given user
+     */
+    Manager.getAllSources = function(params) {
+        var collection = firebase.firestore().collection("words");
+
+        //where clause to filter only by this owner
+        collection.where("table", "==", params.tableId).get().then(
+            function (doc) {
+                //if doc exists, update our current user
+                if (doc) {
+                    console.log("Found " + doc.docs.length + " source(s)");
+
+                    var aSources = [],
+                        aWords = doc.docs;
+
+                    aWords.forEach(function(word) {
+                        word = word.data();
+                        if (aSources.indexOf(word.source) < 0) {
+                            aSources.push(word.source);
+                        }
+                    });
+
+
+                    if (typeof params.success == "function") {
+                        params.success(aSources);
+                    }
+                }
+            })
+            .catch(this.generateErrorHandler(params.error))
+            .finally(params.complete);
+    };
+
+    /**
+     * Gets a specific word
+     */
+    Manager.getWord = function (params) {
+        firebase.firestore().collection("words").doc(params.id).get()
+            .then(function (doc) {
+                var oWord = doc.data();
+                oWord.id = doc.id;
+                params.success(oWord);
+            })
+            .catch(this.generateErrorHandler(params.error))
+            .finally(params.complete);
     };
 
     /**
      * Creates a word in the given table
      */
-    Manager.addWord = function (oWord, fnSuccess) {
+    Manager.addWord = function (params) {
         var userId = this.m_oCurrentUser.uid;
-        if (userId && oWord.word && oWord.table) {
+        if (userId && params.word && params.word.table) {
 
-            oWord.createdAt = oWord.createdAt || new Date();
-            oWord.lastModifiedAt = new Date();
+            params.word.createdAt = params.word.createdAt || new Date();
+            params.word.lastModifiedAt = new Date();
 
-            if (oWord.id) {
-                firebase.firestore().collection("words").doc(oWord.id).set(oWord)
-                .then(fnSuccess)
-                .catch(this.generateErrorHandler());
+            if (params.word.id) {
+                firebase.firestore().collection("words").doc(params.word.id).set(params.word)
+                    .then(params.success)
+                    .catch(this.generateErrorHandler(params.error))
+                    .finally(params.complete);
             } else {
-                firebase.firestore().collection("words").doc().set(oWord)
-                .then(fnSuccess)
-                .catch(this.generateErrorHandler());
+                firebase.firestore().collection("words").doc().set(params.word)
+                    .then(params.success)
+                    .catch(this.generateErrorHandler(params.error))
+                    .finally(params.complete);
             }
         }
     };
@@ -157,16 +206,16 @@ sap.ui.define([
     /**
      * Deletes the given word
      */
-    Manager.deleteWord = function (oWord, fnSuccess) {
+    Manager.deleteWord = function (oWord, success) {
         firebase.firestore().collection("words").doc(oWord.id).delete()
-        .then(fnSuccess)
-        .catch(this.generateErrorHandler());
+            .then(success)
+            .catch(this.generateErrorHandler());
     };
 
     /**
      * Adds a table to the users tables
      */
-    Manager.addTable = function (oTable, fnSuccess) {
+    Manager.addTable = function (oTable, success) {
         var userId = this.m_oCurrentUser.uid;
         if (userId && oTable && oTable.name) {
 
@@ -174,11 +223,11 @@ sap.ui.define([
             oTable.createdAt = oTable.createdAt || new Date();
             if (oTable.id) {
                 firebase.firestore().collection("tables").doc(oTable.id).set(oTable)
-                    .then(fnSuccess)
+                    .then(success)
                     .catch(this.generateErrorHandler());
             } else {
                 firebase.firestore().collection("tables").doc().set(oTable)
-                    .then(fnSuccess)
+                    .then(success)
                     .catch(this.generateErrorHandler());
             }
         }
@@ -187,9 +236,9 @@ sap.ui.define([
     /**
      * Deletes the given table
      */
-    Manager.deleteTable = function (oTable, fnSuccess) {
+    Manager.deleteTable = function (oTable, success) {
         firebase.firestore().collection("tables").doc(oTable.id).delete()
-            .then(fnSuccess)
+            .then(success)
             .catch(this.generateErrorHandler());
     };
 

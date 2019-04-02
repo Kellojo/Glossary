@@ -8,6 +8,9 @@
             },
             "device": {
                 "type": "sap.ui.model.json.JSONModel"
+            },
+            "appHeader": {
+                "type": "sap.ui.model.json.JSONModel"
             }
         },
         
@@ -38,9 +41,14 @@
                     "target": "login"
                 },
                 {
-                    "name": "overview",
-                    "pattern": "overview/:?tableId:",
-                    "target": "overview"
+                    "name": "table",
+                    "pattern": "tables/:tableId:",
+                    "target": "table"
+                },
+                {
+                    "name": "word",
+                    "pattern": "tables/{tableId}/words/{wordId}",
+                    "target": "word"
                 }
             ],
 
@@ -51,8 +59,11 @@
                 "login": {
                     "viewName": "login"
                 },
-                "overview": {
-                    "viewName": "overview"
+                "table": {
+                    "viewName": "table"
+                },
+                "word": {
+                    "viewName": "word"
                 }
             }
         }

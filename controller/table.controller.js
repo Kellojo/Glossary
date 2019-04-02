@@ -4,14 +4,17 @@ sap.ui.define([
     "sap/m/MessageToast",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
-    "sap/m/MessageBox"
-], function (Controller, JSONModel, MessageToast, Filter, FilterOperator, MessageBox) {
+    "sap/m/MessageBox",
+    "com/glossary/model/Formatter"
+], function (Controller, JSONModel, MessageToast, Filter, FilterOperator, MessageBox, Formatter) {
     "use strict";
 
-    var Controller = Controller.extend("com.glossary.controller.Overview", {});
+    var Controller = Controller.extend("com.glossary.controller.table", {
+        formatter: Formatter
+    });
     var ControllerProto = Controller.prototype;
 
-    ControllerProto.name = "overview";
+    ControllerProto.name = "table";
     ControllerProto.ID_LIST = "idWordsList";
     ControllerProto.ID_TABLE_COMBOBOX = "idTableComboBox";
     ControllerProto.ID_PULL_TO_REFRESH = "idPullToRefresh";
@@ -49,6 +52,11 @@ sap.ui.define([
         var oArgs = oEvent.getParameter("arguments"),
             sTableId = oArgs.tableId;
 
+        this.getOwnerComponent().setHeaderVisible(true);
+        this.getOwnerComponent().setBackButtonVisible(false);
+        this.getOwnerComponent().setButtonVisible("AddButton", true, this.onAddWord.bind(this));
+        this.getOwnerComponent().setButtonVisible("EditButton", false, null);
+        this.getOwnerComponent().setButtonVisible("SaveButton", false, null);
         this.loadTables(sTableId);
     };
 
@@ -109,8 +117,8 @@ sap.ui.define([
             this.getView().getModel().setProperty("/currentTable/id", sTableId);
             this.getOwnerComponent().RestClient.getWordsForTable({
                 tableId: sTableId,
-                fnSuccess: this.onLoadTableContendsSuccess.bind(this),
-                fnFinally: this.m_oPullToRefresh.hide.bind(this.m_oPullToRefresh)
+                success: this.onLoadTableContendsSuccess.bind(this),
+                complete: this.m_oPullToRefresh.hide.bind(this.m_oPullToRefresh)
             });
         }
     };
@@ -144,7 +152,7 @@ sap.ui.define([
         var oTable = oEvent.getParameter("selectedItem").getBinding("text").getContext().getObject();
         this.m_oListModel.setProperty("/currentTable", oTable);
         this.loadTableWords(oTable.id);
-        this.getOwnerComponent().toOverview(oTable.id);
+        this.getOwnerComponent().toTable(oTable.id);
     };
 
     ControllerProto.onSearch = function(oEvent) {
@@ -205,14 +213,9 @@ sap.ui.define([
     };
 
     ControllerProto.onAddWord = function(oEvent) {
-        this.getOwnerComponent().openAddWordDialog({
-            title: "Add Word",
-            fnOnSubmit: this.onWordAdded.bind(this),
-            words: this.getWordsAndSourcesArray().words,
-            sources: this.getWordsAndSourcesArray().sources,
-            word:{
-                table: this.m_oListModel.getProperty("/currentTable/id")
-            }
+        this.getOwnerComponent().toWord({
+            tableId: this.m_oListModel.getProperty("/currentTable/id"),
+            wordId: "new"
         });
     };
 
@@ -270,13 +273,9 @@ sap.ui.define([
     // --------------------------------
 
     ControllerProto.editWord = function(oWord) {
-        this.getOwnerComponent().openAddWordDialog({
+        this.getOwnerComponent().toWord({
             tableId: this.m_oListModel.getProperty("/currentTable/id"),
-            fnOnSubmit: this.onWordAdded.bind(this),
-            words: this.getWordsAndSourcesArray().words,
-            sources: this.getWordsAndSourcesArray().sources,
-            title: "Edit Word",
-            word: oWord
+            wordId: oWord.id
         });
     };
 
@@ -302,31 +301,6 @@ sap.ui.define([
             words: aWords,
             sources: aSources
         };
-    };
-    
-    ControllerProto.formatWelcomeMessage = function(sUsername) {
-        var oUserModel = this.getOwnerComponent().getModel("userModel"),
-            sUsername = oUserModel.getProperty("/user/email");
-        return sUsername;
-    };
-
-    ControllerProto.formatFirebaseTimestamp = function(otimestamp) {
-        var oDate = new Date(otimestamp.seconds * 1000),
-            iMonth = oDate.getMonth() + 1,
-            sMonth = iMonth < 10 ? "0" + iMonth : iMonth;
-        return oDate.getDate() + "." + sMonth + "." + oDate.getFullYear()
-    };
-
-    ControllerProto.formatFirebaseTimestampLong = function (otimestamp) {
-        var oDate = new Date(otimestamp.seconds * 1000);
-        return "Last modified " + oDate.toLocaleString();
-    };
-
-    ControllerProto.formatSource = function(sSource) {
-        if (!sSource) {
-            return "-";
-        }
-        return sSource;
     };
 
     return Controller;

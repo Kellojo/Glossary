@@ -1,0 +1,77 @@
+<mvc:View
+	controllerName="com.glossary.controller.table"
+	xmlns="sap.m"
+    xmlns:u="sap.ui.unified"
+	xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:glossaryM="glossary.m"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    height="100%">
+
+        <Page class="glossary-overview" enableScrolling="{= ${device>/system/desktop}}" showHeader="false">
+
+            <content>
+                <Panel height="100%" class="glossary-contentPanel">
+                    <Toolbar class="glossary-listHeader">
+                        <ComboBox id="idTableComboBox" selectionChange="onTableSelectionChange" placeholder="Table"
+                            items="{
+                                path: '/tables',
+                                sorter: { path: 'text' }
+                            }">
+                            <core:Item key="{id}" text="{name}" tooltip="{name}" additionalText="{key}"/>
+                        </ComboBox>
+                        <Button type="Transparent" visible="{= !${device>/system/phone}}" press="onAddTable" tooltip="Create Table" icon="sap-icon://add"/>
+                        <Button type="Transparent" visible="{= !${device>/system/phone} &amp;&amp; ( ${/currentTable/id} !== '' )}" press="onDeleteTable" tooltip="Delete Table" icon="sap-icon://delete"/>
+                        <ToolbarSpacer />
+                        <SearchField liveChange="onSearch"/>
+                        <Button type="Transparent" visible="{= !${device>/system/phone}}" press="refresh" tooltip="Refresh" icon="sap-icon://synchronize"/>
+                        <Button type="Transparent" visible="{= !${device>/system/phone}}" press="onAddWord" tooltip="Add Word" icon="sap-icon://add"/>
+                    </Toolbar>
+
+                    <ScrollContainer vertical="true">
+                        <PullToRefresh id="idPullToRefresh" refresh="refresh" visible="{= !${device>/system/desktop}}"/>
+                        <List id="idWordsList" 
+                            noDataText="No Entries found :("
+                            growing="true" 
+                            growingScrollToLoad="true" 
+                            growingThreshold="50"
+                            itemPress="onListItemPress"
+                            items="{
+                                path : '/currentTable/items',
+                                sorter : {
+                                    path : 'lastModifiedAt/seconds',
+                                    descending : true
+                                }
+                            }" 
+                            class="glossary-overviewList">
+                        
+                            <items>
+                                <CustomListItem
+                                    type="Active"
+                                    class="glossary-listItem">
+                                    <HBox class="sapUiSmallMarginBegin .sapUiSmallMarginEnd sapUiSmallMarginTopBottom">
+                                        <VBox class="heading">
+                                            <HBox class="wordContainer">
+                                                <Link text="{word}" tooltip="{word}" press="onEditWord" class="word"/>
+                                                <core:Icon class="editIcon" src="sap-icon://delete" tooltip="Delete Word" alt="{word}" press="onDeleteWord"/>
+                                            </HBox>
+                                            <Label text="{path: 'source', formatter: '.formatter.formatSource'}" tooltip="{source}"/>
+                                            <Label class="lastModifiedDate" text="{
+                                                path: 'lastModifiedAt',
+                                                formatter: '.formatter.formatFirebaseTimestamp'}" tooltip="{
+                                                path: 'lastModifiedAt',
+                                                formatter: '.formatter.formatFirebaseTimestampLong'}"/>
+                                        </VBox>
+                                        <Text text="{description}" tooltip="{description}" class="description" visible="{= !${device>/system/phone}}"/>
+                                    </HBox>
+
+                                </CustomListItem>
+                            </items>
+                        </List>
+                    </ScrollContainer>
+                </Panel>
+
+            </content>
+        </Page>
+
+</mvc:View>

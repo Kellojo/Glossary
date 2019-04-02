@@ -37,21 +37,7 @@ sap.ui.define([
     // Utility
     // --------------------------------
 
-    ControllerProto.formatEmailVerified = function(oUser) {
-        if (oUser.emailVerified) {
-            return " (verified)";
-        } else {
-            return " (not verified)";
-        }
-    };
 
-    ControllerProto.formatCreationTimeStamp = function (sDate) {
-        return "Created on " + new Date(sDate).toLocaleString();
-    };
-
-    ControllerProto.formatLastSignInTimeStamp = function (sDate) {
-        return "Last sign in " + new Date(sDate).toLocaleString();
-    };
 
     return Controller;
 });

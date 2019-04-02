@@ -1,0 +1,62 @@
+<mvc:View
+	controllerName="com.glossary.controller.word"
+	xmlns="sap.m"
+    xmlns:u="sap.ui.unified"
+	xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:glossaryM="glossary.m"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    height="100%">
+
+        <Page class="glossary-page glossary-page-onlyVertical glossary-viewWord" showHeader="false">
+            <content>
+
+                    <VBox visible="{= !${/isInEditMode}}">
+                        <VBox class="glossary-page-marginHorizontal">
+                            <Text text="{/word/word}" class="glossary-viewWord-word"/>
+                            <Label text="{/word/source}" class="glossary-viewWord-source"/>
+                            <Label class="glossary-viewWord-lastModifiedAt" text="{
+                                path: '/word/lastModifiedAt',
+                                formatter: '.formatter.formatFirebaseTimestamp'}" tooltip="{
+                                path: '/word/lastModifiedAt',
+                                formatter: '.formatter.formatFirebaseTimestampLong'}"/>
+                        </VBox>
+                        
+                        <HBox width="100%" class="glossary-horizontal-spacer"/>
+
+                        <VBox class="glossary-page-marginHorizontal">
+                            <Text text="{/word/description}" class="glossary-viewWord-description"/>
+                        </VBox>
+                    </VBox>
+
+                    <VBox visible="{/isInEditMode}" class="glossary-page-marginHorizontal">
+                        <Label text="Word" labelFor="idWordInput"/>
+                        <Input id="idWordInput" placeholder="Enter Word ..." value="{/word/word}" 
+                            liveChange="onWordLiveChange"
+                            valueLiveUpdate="true"
+                            class="glossary-viewWord-word">
+                            <suggestionItems>
+                                <core:Item text="Test" />
+                            </suggestionItems>
+                        </Input>
+
+                        <Label text="Description" labelFor="idDescriptionInput"/>
+                        <TextArea id="idDescriptionInput" placeholder="Enter Description ..." value="{/word/description}" width="100%" height="100px" liveChange=""/>
+
+                        <Label text="Source" labelFor="idSourceInput"/>
+                        <ComboBox width="100%" id="idSourceInput" placeholder="Enter Source ..." value="{/word/source}" items="{/sources}">
+                            <core:ListItem key="{}" text="{}"/>
+                        </ComboBox>
+                    </VBox>
+
+            </content>
+
+            <footer>
+                <OverflowToolbar visible="{/isInEditMode}">
+                    <ToolbarSpacer/>
+                    <Button type="Reject" text="Delete" icon="sap-icon://delete" press="onDeleteButtonPress"/>
+                </OverflowToolbar>
+            </footer>
+        </Page>
+
+</mvc:View>

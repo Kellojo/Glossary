@@ -1,0 +1,25 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Toolbar class="glossary-header" visible="{appHeader>/visible}">
+        <Button type="Transparent" id="idBackButton" visible="{appHeader>/backButtonVisible}" icon="sap-icon://nav-back"/>
+        <Text text="Glossary" class="glossary-appTitle"/>
+        <ToolbarSpacer />
+
+        <HBox class="glossary-header-user">
+            <Text text="Welcome " visible="{= !${device>/system/phone}}" renderWhitespace="true"/>
+            <Link text="{
+                path: 'userModel>user/uid',
+                formatter: '.formatter.formatWelcomeMessage'
+            }" visible="{= !${device>/system/phone}}" press="onUserLinkPress"/>
+            <Text text="!" visible="{= !${device>/system/phone}}"/>
+        </HBox>
+
+        <Button type="Transparent" id="idAddButton" visible="{appHeader>/AddButtonVisible}" icon="sap-icon://add"/>
+        <Button type="Transparent" id="idEditButton" visible="{appHeader>/EditButtonVisible}" icon="sap-icon://edit"/>
+        <Button type="Transparent" id="idSaveButton" visible="{appHeader>/SaveButtonVisible}" text="Save"/>
+        <Button press="onLogoutPress" icon="sap-icon://log" visible="{appHeader>/logoutButtonVisible}"/>
+    </Toolbar>
+
+</core:FragmentDefinition>

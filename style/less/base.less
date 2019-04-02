@@ -2,11 +2,22 @@
 //Colors
 @color-glossary: #D7803B;
 @color-grey: #666;
-@color-lightGrey: #aeaeae;
+@color-lightGrey: #f2f2f2;
 @color-success: #8cc905;
 @color-error: #ee3100;
+@color-link: #0070b1;
 
 @font-size-small: 0.7rem;
+@font-size-heading-1: 1.5rem;
+
+@smallMargin: 0.25rem;
+@defaultMargin: 0.75rem;
+
+
+@import "./Page.less";
+@import "./Word.less";
+@import "./Header.less";
+@import "./Spacer.less";
 
 .sapMListNoDataText {
     color: @color-grey;
@@ -68,7 +79,7 @@
     position: absolute;
     left: 2rem;
     right: 2rem;
-    bottom: 2rem;
+    bottom: 5.5rem;
 
     .sapMMsgStrip {
         margin-top: 0.25rem;
@@ -83,113 +94,83 @@
         flex-direction: column;
     }
 
+    .glossary-contentPanel {
 
-    .glossary-header {
-        background-color: #0060c0 !important;
-
-        .sapMText, .sapMBtnIcon  {
-            color: white !important;
+        .sapMPanelContent {
+            padding: 0rem;
         }
 
-        &.sapMIBar .sapMBarChild:first-child {
-            margin-left: 1rem !important;
-        }
-        &.sapMIBar>.sapMBarChild:last-child {
-            margin-right: 1rem !important;
-        }
+        .glossary-listHeader {
+                flex-grow: 0;
+                flex-shrink: 0;
 
-        .glossary-appTitle {
-            font-weight: bold;
-            font-size: 1rem;
-        }
+                height: 3rem !important;
+                padding: 0.5rem 0 !important;
+                padding-left: 0rem !important;
 
-        .glossary-header-user {
-            .sapMLnk {
-                vertical-align: middle;
-                margin: 0px !important;
-                color: white;
-
-                &:hover {
-                    color: white;
+                .sapMBarChild.sapMSF.sapMTBShrinkItem {
+                    max-width: 250px;
                 }
-            }
-        }
-    }
 
-    .glossary-listHeader {
-        flex-grow: 0;
-        flex-shrink: 0;
+                .sapMComboBox {
+                    margin-left: 0px !important;
+                }
 
-        height: 3rem !important;
-        padding: 0.5rem 0 !important;
-        padding-left: 0rem !important;
-
-        .sapMBarChild.sapMSF.sapMTBShrinkItem {
-            max-width: 250px;
+                >.sapMBarChild:last-child {
+                    margin-right: 0px !important;
+                }
         }
 
-        .sapMComboBox {
-            margin-left: 0px !important;
-        }
+        .glossary-overviewList {
+            flex-grow: 1;
+            flex-shrink: 1;
+            height: calc(100% - 3rem);      //has to be adapted to fix overflow out of window glitch
 
-        >.sapMBarChild:last-child {
-            margin-right: 0px !important;
-        }
-    }
+            .glossary-listItem {
 
-    .glossary-overviewList {
-        flex-grow: 1;
-        flex-shrink: 1;
-        height: calc(100% - 3rem);      //has to be adapted to fix overflow out of window glitch
-
-        .sapMListUl {
-            overflow: hidden auto;
-            height: -webkit-fill-available;
-        }
-
-        .glossary-listItem {
-
-            .heading {
-                min-width: 25%;
-                max-width: 25%;
-            }
-
-            .wordContainer {
-                width: 100%;
-
-                .sapMFlexItem:first-child, .word {
+                .heading {
+                    min-width: 25%;
                     max-width: 100%;
                 }
-            }
 
-            .editIcon {
-                height: 0;
-                transition: opacity 0.25s ease;
-                opacity: 0; 
-                margin-left: 0.5rem;
-            }
+                .wordContainer {
+                    width: 100%;
 
-            .lastModifiedDate {
-                font-size: 0.75rem;
-            }
-
-            .description {
-                margin-left: 2rem;
-                margin-right: 1rem;
-                text-align: justify !important;
-            }
-
-            &:hover {
-                .editIcon {
-                    cursor: pointer;
-                    height: auto;
-                    opacity: 1;
-                    display: block;
+                    .sapMFlexItem:first-child, .word {
+                        max-width: 100%;
+                    }
                 }
-            }
 
+                .editIcon {
+                    height: 0;
+                    transition: opacity 0.25s ease;
+                    opacity: 0; 
+                    margin-left: 0.5rem;
+                }
+
+                .lastModifiedDate {
+                    font-size: 0.75rem;
+                }
+
+                .description {
+                    margin-left: 2rem;
+                    margin-right: 1rem;
+                    text-align: justify !important;
+                }
+
+                &:hover {
+                    .editIcon {
+                        cursor: pointer;
+                        height: auto;
+                        opacity: 1;
+                        display: block;
+                    }
+                }
+
+            }
         }
     }
+
 }
 
 .glossary-dialog {
@@ -199,12 +180,21 @@
 }
 
 .sap-phone {
+
+    .sapMApp .sapMPage {
+        height: calc(~"100% - 40px");
+    }
+
     .glossary-dialog {
         height: 100% !important;
         width: 100% !important;
         max-height: calc(100% - 5rem) !important;
         max-width: 100% !important;
         border-radius: 0px;
+    }
+
+    .glossary-overview .glossary-contentPanel .glossary-listHeader {
+        padding: 0rem 0.675rem !important;
     }
 }
 
