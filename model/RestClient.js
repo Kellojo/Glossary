@@ -78,6 +78,10 @@ sap.ui.define([
         }).catch(this.generateErrorHandler(mParameters.error));
     };
 
+    Manager.isLoggedIn = function() {
+        return !!firebase.auth().currentUser;
+    };
+
 
 
 

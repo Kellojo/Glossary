@@ -54,6 +54,9 @@ sap.ui.define([
     };
 
     ControllerProto.onPageEnter = function (oEvent) {
+        if (this.getOwnerComponent().RestClient.isLoggedIn()) {
+            this.getOwnerComponent().toTable();
+        }
         this.getOwnerComponent().setHeaderVisible(false);
     };
 
