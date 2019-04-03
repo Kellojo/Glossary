@@ -37,7 +37,5 @@ sap.ui.define([
     // Utility
     // --------------------------------
 
-
-
     return Controller;
 });
