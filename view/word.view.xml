@@ -14,7 +14,7 @@
                     <VBox visible="{= !${/isInEditMode}}">
                         <VBox class="glossary-page-marginHorizontal">
                             <Text text="{/word/word}" class="glossary-viewWord-word"/>
-                            <Label text="{/word/source}" class="glossary-viewWord-source"/>
+                            <Label text="{path: '/word/source', formatter: '.formatter.formatString'}" tooltip="{/word/source}" class="glossary-viewWord-source"/>
                             <Label class="glossary-viewWord-lastModifiedAt" text="{
                                 path: '/word/lastModifiedAt',
                                 formatter: '.formatter.formatFirebaseTimestamp'}" tooltip="{
@@ -25,7 +25,7 @@
                         <HBox width="100%" class="glossary-horizontal-spacer"/>
 
                         <VBox class="glossary-page-marginHorizontal">
-                            <Text text="{/word/description}" class="glossary-viewWord-description"/>
+                            <Text text="{path: '/word/description', formatter: '.formatter.formatString'}" class="glossary-viewWord-description"/>
                         </VBox>
                     </VBox>
 

@@ -22,6 +22,7 @@
 }
 .glossary-header {
   background-color: #0060c0 !important;
+  padding: 0 0.5rem;
 }
 .glossary-header .sapMText,
 .glossary-header .sapMBtnIcon,
@@ -40,6 +41,7 @@
   vertical-align: middle;
   margin: 0px !important;
   color: white;
+  text-decoration: underline;
 }
 .glossary-header .glossary-header-user .sapMLnk:hover {
   color: white;
@@ -112,8 +114,7 @@
   flex-grow: 0;
   flex-shrink: 0;
   height: 3rem !important;
-  padding: 0.5rem 0 !important;
-  padding-left: 0rem !important;
+  padding: 0rem 0.5rem !important;
 }
 .glossary-overview .glossary-contentPanel .glossary-listHeader .sapMBarChild.sapMSF.sapMTBShrinkItem {
   max-width: 250px;
@@ -131,7 +132,7 @@
 }
 .glossary-overview .glossary-contentPanel .glossary-overviewList .glossary-listItem .heading {
   min-width: 25%;
-  max-width: 100%;
+  max-width: 25%;
 }
 .glossary-overview .glossary-contentPanel .glossary-overviewList .glossary-listItem .wordContainer {
   width: 100%;
@@ -163,8 +164,11 @@
 .glossary-dialog .sapMDialogSection {
   height: 100% !important;
 }
-.sap-phone .sapMApp .sapMPage {
-  height: calc(100% - 40px);
+.sapMApp .sapMPage {
+  height: calc(100% - 40px) !important;
+}
+html {
+  overflow: hidden;
 }
 .sap-phone .glossary-dialog {
   height: 100% !important;

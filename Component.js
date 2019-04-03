@@ -99,7 +99,7 @@ sap.ui.define([
     };
     ComponentProto.handleTouchStart = function (evt) {
         const firstTouch = this.getTouches(evt)[0];
-        this.xDown = firstTouch.clientX;
+        this.xDown = firstTouch.clientX < 40 ? firstTouch.clientX: null;
         this.yDown = firstTouch.clientY;
     };
     ComponentProto.handleTouchMove = function (evt) {

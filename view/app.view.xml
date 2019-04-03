@@ -11,18 +11,18 @@
     <html:div>
 
         <Page>
-        <customHeader>
-            <core:Fragment fragmentName="com.glossary.view.header" type="XML"/>
-        </customHeader>
-            
+            <customHeader>
+                <core:Fragment fragmentName="com.glossary.view.header" type="XML"/>
+            </customHeader>
+                
 
-        <content>
-            <App id="idApp">
-                <pages></pages>
-            </App>
+            <content>
+                <App id="idApp">
+                    <pages></pages>
+                </App>
 
-            <VBox id="idErrorMessageContainer" class="glossary-errorMessageContainer"/>
-        </content>
+                <VBox id="idErrorMessageContainer" class="glossary-errorMessageContainer"/>
+            </content>
 
         </Page>
     </html:div>

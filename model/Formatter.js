@@ -40,7 +40,7 @@ sap.ui.define([], function () {
         return "Last modified " + oDate.toLocaleString();
     };
 
-    Formatter.formatSource = function (sSource) {
+    Formatter.formatString = function (sSource) {
         if (!sSource) {
             return "-";
         }

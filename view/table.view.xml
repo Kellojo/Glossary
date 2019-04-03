@@ -55,7 +55,7 @@
                                                 <Link text="{word}" tooltip="{word}" press="onEditWord" class="word"/>
                                                 <core:Icon class="editIcon" src="sap-icon://delete" tooltip="Delete Word" alt="{word}" press="onDeleteWord"/>
                                             </HBox>
-                                            <Label text="{path: 'source', formatter: '.formatter.formatSource'}" tooltip="{source}"/>
+                                            <Label text="{path: 'source', formatter: '.formatter.formatString'}" tooltip="{source}"/>
                                             <Label class="lastModifiedDate" text="{
                                                 path: 'lastModifiedAt',
                                                 formatter: '.formatter.formatFirebaseTimestamp'}" tooltip="{

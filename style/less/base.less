@@ -105,8 +105,7 @@
                 flex-shrink: 0;
 
                 height: 3rem !important;
-                padding: 0.5rem 0 !important;
-                padding-left: 0rem !important;
+                padding: 0rem 0.5rem !important;
 
                 .sapMBarChild.sapMSF.sapMTBShrinkItem {
                     max-width: 250px;
@@ -130,7 +129,7 @@
 
                 .heading {
                     min-width: 25%;
-                    max-width: 100%;
+                    max-width: 25%;
                 }
 
                 .wordContainer {
@@ -179,11 +178,15 @@
     }
 }
 
-.sap-phone {
+.sapMApp .sapMPage {
+    height: calc(~"100% - 40px") !important;
+}
 
-    .sapMApp .sapMPage {
-        height: calc(~"100% - 40px");
-    }
+html {
+    overflow: hidden;
+}
+
+.sap-phone {
 
     .glossary-dialog {
         height: 100% !important;

@@ -16,7 +16,7 @@
             <Text text="!" visible="{= !${device>/system/phone}}"/>
         </HBox>
 
-        <Button type="Transparent" id="idAddButton" visible="{appHeader>/AddButtonVisible}" icon="sap-icon://add"/>
+        <Button type="Transparent" id="idAddButton" visible="{= ${appHeader>/AddButtonVisible} &amp;&amp; !${device>/system/desktop}}" icon="sap-icon://add"/>
         <Button type="Transparent" id="idEditButton" visible="{appHeader>/EditButtonVisible}" icon="sap-icon://edit"/>
         <Button type="Transparent" id="idSaveButton" visible="{appHeader>/SaveButtonVisible}" text="Save"/>
         <Button press="onLogoutPress" icon="sap-icon://log" visible="{appHeader>/logoutButtonVisible}"/>
