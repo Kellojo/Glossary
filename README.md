@@ -14,8 +14,17 @@ Glossary is what is says a glossary, saving words, their explanation and the sou
 
 
 ## How can this be setup?
+
+### For Development
+- Clone this repository
+- Run the bin/install.sh
+- Run the bin/run-local.sh
+- Remove the webapp/Component-preload.js
+
+### For Production and Development
+- Clone this repository
 - Create a firebae project
-- Configure the firebase settings according to your project in the "/Component.js" file
+- Configure the firebase settings according to your project in the "webapp/Component.js" file
 - In your firebase project choose the Cloud Firestore and setup the following rules for it:
 
 ```
@@ -33,6 +42,8 @@ Glossary is what is says a glossary, saving words, their explanation and the sou
   }
 } 
 ```
+
+- Deploy the "/webapp" folder on a webserver or use firebase to deploy it directly there
 
 ## How does it look like?
 
