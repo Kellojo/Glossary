@@ -20,10 +20,12 @@ Glossary is what is says a glossary, saving words, their explanation and the sou
 - Run the bin/install.sh
 - Run the bin/run-local.sh
 - Remove the webapp/Component-preload.js
+- Create a firebase project
+- Configure the firebase settings according to your project in the "webapp/Component.js" file
 
 ### For Production and Development
 - Clone this repository
-- Create a firebae project
+- Create a firebase project
 - Configure the firebase settings according to your project in the "webapp/Component.js" file
 - In your firebase project choose the Cloud Firestore and setup the following rules for it:
 
