@@ -52,7 +52,7 @@
             </content>
 
             <footer>
-                <OverflowToolbar visible="{/isInEditMode}">
+                <OverflowToolbar visible="{= ${/isInEditMode} &amp;&amp; !${/isInCreationMode}}">
                     <ToolbarSpacer/>
                     <Button type="Reject" text="Delete" icon="sap-icon://delete" press="onDeleteButtonPress"/>
                 </OverflowToolbar>

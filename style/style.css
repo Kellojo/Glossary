@@ -63,6 +63,9 @@
 .sapMInputBaseContentWrapperError {
   border-color: #ee3100 !important;
 }
+.sapMPullDown {
+  background-color: white !important;
+}
 .glossary-centeredPanel {
   display: flex;
   align-items: center;
@@ -177,8 +180,17 @@ html {
   max-width: 100% !important;
   border-radius: 0px;
 }
-.sap-phone .glossary-overview .glossary-contentPanel .glossary-listHeader {
+.sap-phone .glossary-overview .glossary-contentPanel .glossary-listItem .heading {
+  max-width: 100% !important;
+}
+.sap-phone .glossary-overview .glossary-contentPanel .glossary-listItem .glossary-listHeader {
   padding: 0rem 0.675rem !important;
+}
+.sap-phone .glossary-overview .glossary-contentPanel .glossary-listItem .sapMHBox {
+  margin-right: 1rem;
+}
+.sap-phone .glossary-overview .glossary-contentPanel .glossary-listItem .editIcon {
+  display: none !important;
 }
 .glossary-userDialog .glossary-userInfo {
   border-bottom: 1px solid #f2f2f2;

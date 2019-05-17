@@ -52,7 +52,7 @@ sap.ui.define([
 
         //check for new word creation
         if (sWordId == "new") {
-            this.toEditMode();
+            this.toCreationMode();
             this.m_oWordModel.setProperty("/word", {
                 id: null,
                 word: "",
@@ -166,13 +166,19 @@ sap.ui.define([
         this.getView().setBusy(bBusy);
     };
 
+    ControllerProto.toCreationMode = function() {
+        this.toEditMode();
+        this.m_oWordModel.setProperty("/isInCreationMode", true);
+    };
     ControllerProto.toEditMode = function() {
         this.m_oWordModel.setProperty("/isInEditMode", true);
+        this.m_oWordModel.setProperty("/isInCreationMode", false);
         this.getOwnerComponent().setButtonVisible("EditButton", false, null);
         this.getOwnerComponent().setButtonVisible("SaveButton", true, this.onSaveButtonPress.bind(this));
     };
     ControllerProto.toReadMode = function() {
         this.m_oWordModel.setProperty("/isInEditMode", false);
+        this.m_oWordModel.setProperty("/isInCreationMode", false);
         this.getOwnerComponent().setButtonVisible("EditButton", true, this.toEditMode.bind(this));
         this.getOwnerComponent().setButtonVisible("SaveButton", false, null);
     };

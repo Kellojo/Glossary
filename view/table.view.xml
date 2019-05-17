@@ -18,7 +18,7 @@
                                 path: '/tables',
                                 sorter: { path: 'text' }
                             }">
-                            <core:Item key="{id}" text="{name}" tooltip="{name}" additionalText="{key}"/>
+                            <core:Item key="{id}" text="{name}" tooltip="{name}"/>
                         </ComboBox>
                         <Button type="Transparent" visible="{= !${device>/system/phone}}" press="onAddTable" tooltip="Create Table" icon="sap-icon://add"/>
                         <Button type="Transparent" visible="{= !${device>/system/phone} &amp;&amp; ( ${/currentTable/id} !== '' )}" press="onDeleteTable" tooltip="Delete Table" icon="sap-icon://delete"/>
