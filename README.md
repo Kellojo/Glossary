@@ -1,6 +1,6 @@
 # Glossary
 
-Glossary is what is says a glossary, saving words, their explanation and the source of that explanation in lists using a MySQL Database and a webserver capable of running php.
+Glossary is what it says a glossary, saving words, their explanation and the source of that explanation in tables using Firebase.
 
 
 ## Features
